@@ -1,4 +1,4 @@
-package sample;
+package org.synoptic;
 
 import java.util.HashMap;
 import java.time.LocalTime;
@@ -24,16 +24,10 @@ public class POI {
     }
 
     public POI(int typeVar, String nameVar, String addressVar, String descriptionVar, HashMap<Integer, LocalTime[]> openingHoursVar) {
-        switch(typeVar) {
-            case (0):
-                this.type = Type.SHOP;
-                break;
-            case (1):
-                this.type = Type.RESTAURANT;
-                break;
-            case (2):
-                this.type = Type.ATTRACTION;
-                break;
+        switch (typeVar) {
+            case (0) -> this.type = Type.SHOP;
+            case (1) -> this.type = Type.RESTAURANT;
+            case (2) -> this.type = Type.ATTRACTION;
         }
         this.name = nameVar;
         this.address = addressVar;
@@ -86,19 +80,11 @@ public class POI {
         this.endAddress = endAddressVar;
     }
     public void setType(int typeVar) {
-        switch(typeVar) {
-            case (0):
-                this.type = Type.SHOP;
-                break;
-            case (1):
-                this.type = Type.RESTAURANT;
-                break;
-            case (2):
-                this.type = Type.ATTRACTION;
-                break;
-            case (3):
-                this.type = Type.WALKING_TRAIL;
-                break;
+        switch (typeVar) {
+            case (0) -> this.type = Type.SHOP;
+            case (1) -> this.type = Type.RESTAURANT;
+            case (2) -> this.type = Type.ATTRACTION;
+            case (3) -> this.type = Type.WALKING_TRAIL;
         }
     }
 
