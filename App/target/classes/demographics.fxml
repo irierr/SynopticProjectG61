@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+   <tabs>
+      <Tab text="Map">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+      <Tab text="Shops">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+      <Tab text="Activities">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0" />
+         </content>
+      </Tab>
+      <Tab text="Info">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="296.0" text="Information Fact File" />
+                  <VBox alignment="CENTER_RIGHT" layoutX="9.0" layoutY="69.0" prefHeight="647.0" prefWidth="371.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="377.0" text="Lobitos: Demographics" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The following data was collected on Peru's 2017 National Censuses of Population and Housing, which only covered Lobitos and not Piedritas. The sample size the data is based off is 40 households." textAlignment="CENTER" wrappingWidth="371.21630859375">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox prefHeight="159.0" prefWidth="382.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The population for Lobitos is quite young, but in recent years, there has been a decline in people from ages 10-19 and 20-29. In Piedritas, the majority of the population surveyed was over 30 years old." wrappingWidth="149.21630859375">
+                                 <font>
+                                    <Font name="Century Gothic" size="13.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="163.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Age.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In Lobitos &amp; Piedritas, the majority of the population speaks Spanish. In Lobitos, the small percentage of the population speaks Portuguese due to the Brazillian tourists who opened businesses during the tourism boom. In addition, a small segment of the popultation speaks Quechua, the language of the Inca Empire and the msot spoken indigenous language in the Americas." textAlignment="CENTER" wrappingWidth="381.27694034576416">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="165.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Religion.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In Lobitos, the majority of the population is Catholic (See diagram to the left). Others identify as Evangelical and Christian. There is a segment of the population that does not profress any religion" wrappingWidth="146.53375244140625" />
+                           </children>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document" textAlignment="CENTER" wrappingWidth="368.1996765136719">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Back">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+   <stylesheets>
+      <URL value="@stylesheet.css" />
+   </stylesheets>
+</TabPane>
