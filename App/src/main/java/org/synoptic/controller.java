@@ -1,13 +1,18 @@
 package org.synoptic;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,23 +27,18 @@ public class controller implements Initializable {
     public static final int DEFAULT_WIDTH = 400;
     public static final int DEFAULT_HEIGHT = 800;
 
-    public Scene loadScene(String path) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(path));
-        return new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-    }
 
-    public void displayScene(String path) throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(loadScene(path));
-        stage.show();
+    public static void switchView(String view, MouseEvent event, Class c) throws IOException {
+        Parent parent = FXMLLoader.load(c.getResource(view));
+        Scene scene = new Scene(parent, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML public Button climateButton;
-    public void climateButton() throws IOException{
-        Stage closeStage = (Stage) climateButton.getScene().getWindow();
-        closeStage.close();
-        displayScene("climate1.fxml");
+    public void climateButton(MouseEvent event) throws IOException{
+        switchView("climate.fxml", event, getClass());
     }
-
 
 }
