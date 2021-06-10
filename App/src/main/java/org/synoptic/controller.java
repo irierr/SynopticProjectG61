@@ -41,13 +41,6 @@ public class controller implements Initializable {
         stage.show();
     }
 
-    public static void switchView(String view, MouseEvent event, Class c) throws IOException {
-        Parent parent = FXMLLoader.load(c.getResource(view));
-        Scene scene = new Scene(parent, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
 
     @FXML public Button climateButton;
     public void climateButton() throws IOException{
@@ -62,6 +55,20 @@ public class controller implements Initializable {
         Stage closeStage = (Stage) demographicButton.getScene().getWindow();
         closeStage.close();
         displayScene("demographics.fxml");
+    }
+
+    @FXML public Button localAreaButton;
+    public void localAreaButton() throws IOException{
+        Stage closeStage = (Stage) localAreaButton.getScene().getWindow();
+        closeStage.close();
+        displayScene("localArea.fxml");
+    }
+
+    @FXML public Button industriesAndEmploymentButton;
+    public void industriesAndEmploymentButton() throws IOException{
+        Stage closeStage = (Stage) industriesAndEmploymentButton.getScene().getWindow();
+        closeStage.close();
+        displayScene("industriesAndEmployment.fxml");
     }
 
     @FXML public Button backInfo;

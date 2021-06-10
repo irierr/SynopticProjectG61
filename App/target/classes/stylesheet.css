@@ -27,12 +27,6 @@ AnchorPane {
 .label {
     -fx-font-family: "Century Gothic";
     -fx-font-size: 20;
-    -fx-text-fill: Black ;
+    -fx-text-fill: Black;
 }
 
-
-infoTab {
-    -fx-font-family: "Century Gothic";
-    -fx-font-size: 16;
-    -fx-background-color: Red;
-}
