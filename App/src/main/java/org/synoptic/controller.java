@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.stage.Window;
+import javafx.scene.control.TabPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +30,17 @@ public class controller implements Initializable {
     public static final int DEFAULT_HEIGHT = 800;
 
 
+    public Scene loadScene(String path) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(path));
+        return new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    }
+
+    public void displayScene(String path) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(loadScene(path));
+        stage.show();
+    }
+
     public static void switchView(String view, MouseEvent event, Class c) throws IOException {
         Parent parent = FXMLLoader.load(c.getResource(view));
         Scene scene = new Scene(parent, DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -37,8 +50,25 @@ public class controller implements Initializable {
     }
 
     @FXML public Button climateButton;
-    public void climateButton(MouseEvent event) throws IOException{
-        switchView("climate.fxml", event, getClass());
+    public void climateButton() throws IOException{
+        Stage closeStage = (Stage) climateButton.getScene().getWindow();
+        closeStage.close();
+        displayScene("climate.fxml");
+
+    }
+
+    @FXML public Button demographicButton;
+    public void demographicButton() throws IOException{
+        Stage closeStage = (Stage) demographicButton.getScene().getWindow();
+        closeStage.close();
+        displayScene("demographics.fxml");
+    }
+
+    @FXML public Button backInfo;
+    public void backInfoButton() throws IOException{
+        Stage closeStage = (Stage) backInfo.getScene().getWindow();
+        closeStage.close();
+        displayScene("view.fxml");
     }
 
 }

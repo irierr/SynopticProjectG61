@@ -51,10 +51,10 @@
                                 </rowConstraints>
                                  <children>
                                     <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="72.0" prefWidth="145.0" text="Industries" textAlignment="CENTER" GridPane.rowIndex="2" />
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="72.0" prefWidth="145.0" text="Demographics" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button fx:id="demographicButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#demographicButton" prefHeight="72.0" prefWidth="145.0" text="Demographics" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="72.0" prefWidth="145.0" text="Employment" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label prefHeight="93.0" prefWidth="117.0" text="Lobitos Population: 1,300" textAlignment="CENTER" wrapText="true" GridPane.valignment="CENTER" />
-                                    <Button fx:id="climateButton" alignment="CENTER" contentDisplay="CENTER" layoutX="215.0" layoutY="76.0" mnemonicParsing="false" onMouseClicked="#climateButton" prefHeight="72.0" prefWidth="145.0" text="Climate" textAlignment="CENTER" GridPane.rowIndex="1" />
+                                    <Button fx:id="climateButton" alignment="CENTER" contentDisplay="CENTER" layoutX="215.0" layoutY="76.0" mnemonicParsing="false" onAction="#climateButton" prefHeight="72.0" prefWidth="145.0" text="Climate" textAlignment="CENTER" GridPane.rowIndex="1" />
                                     <Label prefHeight="93.0" prefWidth="117.0" text="Piedritas Population: 400" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>

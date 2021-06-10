@@ -16,21 +16,6 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
    <tabs>
-      <Tab text="Map">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0" />
-         </content>
-      </Tab>
-      <Tab text="Shops">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0" />
-         </content>
-      </Tab>
-      <Tab text="Activities">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0" />
-         </content>
-      </Tab>
       <Tab text="Info">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
@@ -38,7 +23,7 @@
                   <Label layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="296.0" text="Information Fact File" />
                   <VBox alignment="CENTER_RIGHT" layoutX="9.0" layoutY="69.0" prefHeight="647.0" prefWidth="371.0">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="377.0" text="Lobitos: Demographics" />
+                        <Label prefHeight="31.0" prefWidth="377.0" text="Lobitos: Demographics" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The following data was collected on Peru's 2017 National Censuses of Population and Housing, which only covered Lobitos and not Piedritas. The sample size the data is based off is 40 households." textAlignment="CENTER" wrappingWidth="371.21630859375">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
@@ -72,14 +57,21 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Text>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="139.0" prefWidth="382.0">
                            <children>
                               <ImageView fitHeight="165.0" fitWidth="235.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Religion.jpg" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In Lobitos, the majority of the population is Catholic (See diagram to the left). Others identify as Evangelical and Christian. There is a segment of the population that does not profress any religion" wrappingWidth="146.53375244140625" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In Lobitos, the majority of the population is Catholic (See diagram to the left). Others identify as Evangelical and Christian. There is a segment of the population that does not profress any religion" textAlignment="RIGHT" wrappingWidth="146.53375244140625">
+                                 <font>
+                                    <Font name="Century Gothic" size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
+                              </Text>
                            </children>
                         </HBox>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document" textAlignment="CENTER" wrappingWidth="368.1996765136719">
@@ -90,7 +82,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Back">
+                        <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#backInfoButton" text="Back">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
                            </font>
