@@ -8,7 +8,7 @@
 .tab {
     -fx-font-family: Arial;
     -fx-font-size: 18;
-    -fx-background-color:royalblue ;
+    -fx-background-color:royalblue;
 }
 
 .tab:selected {
