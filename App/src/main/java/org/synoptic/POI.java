@@ -25,9 +25,15 @@ public class POI {
 
     public POI(int typeVar, String nameVar, String addressVar, String descriptionVar, HashMap<Integer, LocalTime[]> openingHoursVar) {
         switch (typeVar) {
-            case (0) -> this.type = Type.SHOP;
-            case (1) -> this.type = Type.RESTAURANT;
-            case (2) -> this.type = Type.ATTRACTION;
+            case (0):
+                this.type = Type.SHOP;
+                break;
+            case (1):
+                this.type = Type.RESTAURANT;
+                break;
+            case (2):
+                this.type = Type.ATTRACTION;
+                break;
         }
         this.name = nameVar;
         this.address = addressVar;
@@ -58,7 +64,7 @@ public class POI {
     }
     public String getEndAddress() {
         return this.endAddress;
-    };
+    }
     public Type getType() {
         return this.type;
     }
@@ -81,10 +87,18 @@ public class POI {
     }
     public void setType(int typeVar) {
         switch (typeVar) {
-            case (0) -> this.type = Type.SHOP;
-            case (1) -> this.type = Type.RESTAURANT;
-            case (2) -> this.type = Type.ATTRACTION;
-            case (3) -> this.type = Type.WALKING_TRAIL;
+            case (0):
+                this.type = Type.SHOP;
+                break;
+            case (1):
+                this.type = Type.RESTAURANT;
+                break;
+            case (2):
+                this.type = Type.ATTRACTION;
+                break;
+            case (3):
+                this.type = Type.WALKING_TRAIL;
+                break;
         }
     }
 
