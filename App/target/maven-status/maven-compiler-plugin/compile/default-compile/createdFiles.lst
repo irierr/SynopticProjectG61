@@ -1,4 +1,4 @@
-sample/POI.class
 org/synoptic/Main.class
-sample/POI$Type.class
 org/synoptic/controller.class
+org/synoptic/POI.class
+org/synoptic/POI$Type.class
