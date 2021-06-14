@@ -1,4 +1,4 @@
-package sample;
+package org.synoptic;
 
 import java.util.HashMap;
 import java.time.LocalTime;
@@ -24,7 +24,7 @@ public class POI {
     }
 
     public POI(int typeVar, String nameVar, String addressVar, String descriptionVar, HashMap<Integer, LocalTime[]> openingHoursVar) {
-        switch(typeVar) {
+        switch (typeVar) {
             case (0):
                 this.type = Type.SHOP;
                 break;
@@ -64,7 +64,7 @@ public class POI {
     }
     public String getEndAddress() {
         return this.endAddress;
-    };
+    }
     public Type getType() {
         return this.type;
     }
@@ -86,7 +86,7 @@ public class POI {
         this.endAddress = endAddressVar;
     }
     public void setType(int typeVar) {
-        switch(typeVar) {
+        switch (typeVar) {
             case (0):
                 this.type = Type.SHOP;
                 break;
