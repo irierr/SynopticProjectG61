@@ -66,8 +66,19 @@
       </content>
     </Tab>
   </tabs>
-
   <stylesheets>
-    <URL value="@stylesheet.css" />
+    <URL value="@stylesheet.css"/>
   </stylesheets>
+  <Tab text="Map">
+    <fx:include source="map.fxml"/>
+  </Tab>
+  <Tab text="Shops">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+  </Tab>
+  <Tab text="Activities">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+  </Tab>
+  <Tab text="Info">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+  </Tab>
 </TabPane>
