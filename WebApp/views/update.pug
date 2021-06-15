@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    .container
+        p Sign sndbajwEFup to our mailing list so you can be kept in the loop with any future updates on our progress.
+        p required information is marked with an asterisk(*)
+        form(action='/signup', method='post', onsubmit='return validateSignup()')
+            label(for='firstname') First Name*:
+            input#firstname(type='text',placeholder='First Name', name='firstname')
+
+            label(for='lastname') Last Name*:
+            input#lastname(type='text',placeholder='Last Name', name='lastname')
+
+            label(for='email') Email*:
+            input#email(type='email',placeholder='name@example.com', name='email')
+
+            label(for='comment') Comments:
+            textarea#comment(placeholder='Write any comments here', name='comment')
+
+            button.btn.btn-primary(type='submit') Sign up

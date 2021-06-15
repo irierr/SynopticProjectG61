@@ -1,0 +1,37 @@
+extends layout
+
+block content
+        .container
+            p Sign up to our mailing list so you can be kept in the loop with any future updates on our progress.
+            p required information is marked with an asterisk(*)
+            form(action='/signup', method='post', onsubmit='return validateSignup()')
+                label(for='name') Name*:
+                input#name(type='text',placeholder='Name', name='name')
+
+                label(for='type') Type*:
+                    - const typeOptions = [{value: 'Shop'} , {value: 'Restaurant'} , {value: 'Attraction'} , {value: 'Walking Trail'}]
+                    select#type(name='type' onchange="walkingTrailCheck()")
+                        each type in typeOptions
+                            option(value=(type.value)) #{type.value}
+
+                label(for='address') Address*:
+                input#address(type='text',placeholder='Address', name='address')
+
+                #ifYes(style='display: none;')
+                    label(for='endAddress') End Address:
+                    input#endAddress(type='text',placeholder='End Address', name='endAddress')
+
+                label(for='phone') Phone Number*:
+                input#phone(type='number',placeholder='Phone', name='phone')
+
+                label(for='openingTime') Opening Time*:
+                input#openingTime(type='number' ,placeholder='Opening Time', name='openingTime')
+
+                label(for='closingTime') Closing Time*:
+                input#closingTime(type='number' ,placeholder='Closing Time', name='closingTime')
+
+                label(for='description') Description*:
+                textarea#description(placeholder='Write description here', name='description')
+
+
+                button.btn.btn-primary(type='submit') Sign up
