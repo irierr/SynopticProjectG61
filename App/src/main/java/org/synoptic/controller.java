@@ -100,9 +100,26 @@ public class controller implements Initializable {
 
     @FXML private Label ShopName = new Label();
     @FXML private Label Description = new Label();
+    @FXML private Label OpeningHours = new Label();
     @FXML private ListView DirectoryList = new ListView();
     @FXML private ListView StockList = new ListView();
     @FXML private ImageView ShopImage = new ImageView();
 
+    /* Activity Page ----------------------------------------------------------*/
 
+    @FXML private ListView ActivityList = new ListView();
+    @FXML private Label ActivityDescription = new Label();
+    @FXML private Button ActivityMapButton = new Button();
+    @FXML private Button ActivityDirectoryButton = new Button();
+
+
+    public void ActivityMapButton() throws IOException
+    {
+
+    }
+
+    public void ActivityDirectoryButton() throws IOException
+    {
+
+    }
 }

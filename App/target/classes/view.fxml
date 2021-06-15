@@ -3,18 +3,18 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.ImageView?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
   <tabs>
     <Tab text="Map">
       <content>
@@ -27,34 +27,36 @@
               <children>
                   <ListView fx:id="DirectoryList" layoutX="7.0" layoutY="7.0" prefHeight="200.0" prefWidth="386.0" />
                   <ListView fx:id="StockList" layoutX="7.0" layoutY="487.0" prefHeight="200.0" prefWidth="386.0" />
-                  <GridPane layoutX="7.0" layoutY="233.0" prefHeight="207.0" prefWidth="386.0">
+                  <GridPane layoutX="7.0" layoutY="233.0" prefHeight="135.0" prefWidth="386.0">
                       <columnConstraints>
                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       </columnConstraints>
                       <rowConstraints>
                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       </rowConstraints>
                       <children>
                           <Label fx:id="Description" text="shop description" />
                           <ImageView fx:id="ShopImage" fitHeight="78.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                          <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                              <children>
-                                  <Label text="Monday - Friday" />
-                              </children>
-                          </VBox>
                       </children>
                   </GridPane>
-                  <Label layoutX="14.0" layoutY="463.0" text="Stock:" />
+                  <Label layoutX="9.0" layoutY="452.0" text="Stock:" />
                   <Label fx:id="ShopName" layoutX="9.0" layoutY="213.0" text="shop name" />
+                      <Label layoutX="9.0" layoutY="360.0" text="Opening Hours" />
+                  <Label fx:id="OpeningHours" layoutX="9.0" layoutY="411.0" text="Label" />
               </children>
           </AnchorPane>
       </content>
     </Tab>
     <Tab text="Activities">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="ActivityList" layoutX="12.0" layoutY="14.0" prefHeight="200.0" prefWidth="375.0" />
+                  <Label fx:id="ActivityDescription" layoutX="14.0" layoutY="229.0" text="Label" />
+                  <Button fx:id="ActivityMapButton" layoutX="321.0" layoutY="669.0" mnemonicParsing="false" text="Map" />
+                  <Button fx:id="ActivityDirectoryButton" layoutX="321.0" layoutY="628.0" mnemonicParsing="false" text="Directory" />
+               </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="Info">
@@ -95,18 +97,7 @@
     </Tab>
   </tabs>
   <stylesheets>
-    <URL value="@stylesheet.css"/>
+    <URL value="@stylesheet.css" />
   </stylesheets>
-  <Tab text="Map">
-    <fx:include source="map.fxml"/>
-  </Tab>
-  <Tab text="Shops">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-  </Tab>
-  <Tab text="Activities">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-  </Tab>
-  <Tab text="Info">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
-  </Tab>
+
 </TabPane>
