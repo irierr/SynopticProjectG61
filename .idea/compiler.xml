@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="App" />
+        <module name="SMS" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="App" target="15" />
+      <module name="SMS" target="1.5" />
       <module name="SynopticProject" target="15" />
     </bytecodeTargetLevel>
   </component>

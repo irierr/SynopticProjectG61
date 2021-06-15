@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+    <tabs>
+        <Tab text="Info">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="52.0" prefWidth="296.0" text="Information Fact File" />
+                        <VBox prefHeight="364.0" prefWidth="371.0">
+                            <children>
+                                <Label prefHeight="25.0" prefWidth="194.0" text="Lobitos &amp; Piedritas" wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="17.0" layoutY="13.0" prefHeight="47.0" prefWidth="296.0" text="Information Fact File" />
+                        <VBox alignment="CENTER_RIGHT" layoutX="8.0" layoutY="52.0" prefHeight="636.0" prefWidth="385.0">
+                            <children>
+                                <Label prefHeight="25.0" prefWidth="377.0" text="Lobitos &amp; Piedritas: History">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin></Label>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2000-1800 BCE" textAlignment="CENTER" underline="true">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="300.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Peru was home to the Norte Chico civilization, the oldest civilisation in the Americas and one of the six oldest in the world." wrappingWidth="383.73119354248047">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1811-1824" underline="true">
+                           <VBox.margin>
+                              <Insets right="327.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Peru gained independance  on 28th July 1821, during the War of Independence. Spain made futile attempts to regain its former colonies and only in 1879 finally recognised Peruvian independence." wrappingWidth="383.4492664337158">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Early 1900s" underline="true">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="320.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="US and British entrepreneurs led the early exploitation of Peru's oil fields, the majority of which were deiscovered in the remote northern desert coast. An Englishman, Alexander Milne, discovered the last major oil field near Lobitos and formed the Lobitos Oilfield Compnay to mine the fields." wrappingWidth="382.77709197998047">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1950s-1970s" underline="true">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="315.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Piedritas was a town that mainly relied on the raising of livestock. The town was located in a valley with ravines and a large carob tree forest that provided shade and natural grazing for the livestock." wrappingWidth="383.4515190124512">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1983" underline="true">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="355.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Heavy rains from a major El Niño event caused a huge mudslide that destroyed much of the dry forest in the valley where Piedritas was located. In the aftermath of this devestating event, the remaining residents resettled just outside of the valley, further towards the city of Talara." wrappingWidth="382.8860664367676">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1995-1999" underline="true">
+                           <VBox.margin>
+                              <Insets right="327.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Peru and Ecuador went to war over the border demarcation along the headwaters of the Cenepa River. The Montevideo Declaration went into effect in May 1999. Part of the peace agreement included reducing the military presence of both countries in the vincinity of the newly recognised border, which involved removing the Lobitos military base. The departure of the military had a dramtic impact on the town by not only removing an economic base, but also removing much of the military base infrastructure." wrappingWidth="381.92261123657227">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document." textAlignment="CENTER" wrappingWidth="368.1996765136719">
+                                    <font>
+                                        <Font name="Century Gothic" size="11.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </Text>
+                        <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#backInfoButton" text="Back">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+    <stylesheets>
+        <URL value="@stylesheet.css" />
+    </stylesheets>
+</TabPane>

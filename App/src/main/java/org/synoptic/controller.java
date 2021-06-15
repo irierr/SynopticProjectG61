@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.SingleSelectionModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +48,6 @@ public class controller implements Initializable {
         Stage closeStage = (Stage) climateButton.getScene().getWindow();
         closeStage.close();
         displayScene("climate.fxml");
-
     }
 
     @FXML public Button demographicButton;
@@ -71,11 +71,34 @@ public class controller implements Initializable {
         displayScene("industriesAndEmployment.fxml");
     }
 
+    @FXML public Button historyButton;
+    public void historyButton() throws IOException {
+        Stage closeStage = (Stage) historyButton.getScene().getWindow();
+        closeStage.close();
+        displayScene("history.fxml");
+    }
+
+    @FXML public Button ecoProblemsButton;
+    public void ecoProblemsButton() throws IOException {
+        Stage closeStage = (Stage) ecoProblemsButton.getScene().getWindow();
+        closeStage.close();
+        displayScene("ecoProblems.fxml");
+    }
+
     @FXML public Button backInfo;
+    @FXML public TabPane tabPane = new TabPane();
+
+    public TabPane getTabPane() {
+        return tabPane;
+    }
+
     public void backInfoButton() throws IOException{
         Stage closeStage = (Stage) backInfo.getScene().getWindow();
         closeStage.close();
         displayScene("view.fxml");
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(3);
+
     }
 
 }
