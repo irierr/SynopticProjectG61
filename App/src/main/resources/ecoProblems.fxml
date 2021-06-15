@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+   <tabs>
+      <Tab text="Info">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="296.0" text="Information Fact File" />
+                  <VBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="54.0" prefHeight="643.0" prefWidth="371.0">
+                     <children>
+                        <Label prefHeight="64.0" prefWidth="371.0" text="Lobitos &amp; Piedritas: Eco Problems &amp; Solutions" wrapText="true" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eco-Tourism" underline="true">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="295.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The impacts of tourism have negatively affected lots of aspects in this area of Peru. Many of the people that are actually benefitting from tourism are not from the local area, which is causing local businesses and the community to have a poorer quality of life. This then leads to increases in civil unrest, crime and inequality. " wrappingWidth="370.2812042236328">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Two of the main challenges that Piedritas faces is deforestation and environmental degradation in order to build a sustainable ecotourism industry. To address these issues, Ecoswell has implemented, with support from energy company Enel, the &quot;Green Piedritas&quot; Environmental Education and Community Ecotourism Project. This is to educate the community on the harmful impacts of producing charcol and implementing initiatives to preserve the local ecosystem." wrappingWidth="369.9464111328125">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sanitation" underline="true">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets right="307.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="In Lobitos, the majority of homes are connected to the collapsed sewer line, which is polluting the local area. This overflow is present as pools of wastewater which create health hazards, unpleasent sights, smells and pollution to the local environment. Many households do build their own soakaways but with few other available options, people often resort to open defacation." wrappingWidth="370.44630432128906">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     Ecoswell has put in place some pilot projects to deal with the sanitation problems. These include a dry composting toilet unit. It saves more than 15,000 litres of water and can produce close to 2,000 litres of high-grade compost per year. They have also installed two 300W PV panels and a 7,000 litre biodigester which has a capacity for primary treatment of sewage before it filters safely into the ground." wrappingWidth="370.59271335601807">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document." textAlignment="CENTER" wrappingWidth="368.1996765136719">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#backInfoButton" text="Back">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+   <stylesheets>
+      <URL value="@stylesheet.css" />
+   </stylesheets>
+</TabPane>
