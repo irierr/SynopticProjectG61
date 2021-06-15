@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.time.LocalTime;
 
 public class POI {
-    private enum Type {
+    public enum Type {
         SHOP,
         RESTAURANT,
         ATTRACTION,
@@ -13,9 +13,10 @@ public class POI {
 
     private String name;
     private String address;
+    private String phoneNumber;
     private String description;
     private HashMap<Integer, LocalTime[]> openingHours;
-    private Type type;
+    private POI.Type type;
     private String endAddress;
 
 
@@ -23,26 +24,18 @@ public class POI {
         this.type = null;
     }
 
-    public POI(int typeVar, String nameVar, String addressVar, String descriptionVar, HashMap<Integer, LocalTime[]> openingHoursVar) {
-        switch (typeVar) {
-            case (0):
-                this.type = Type.SHOP;
-                break;
-            case (1):
-                this.type = Type.RESTAURANT;
-                break;
-            case (2):
-                this.type = Type.ATTRACTION;
-                break;
-        }
+    public POI(POI.Type typeVar, String phoneNumberVar, String nameVar, String addressVar, String descriptionVar, HashMap<Integer, LocalTime[]> openingHoursVar) {
+        this.type = typeVar;
         this.name = nameVar;
+        this.phoneNumber = phoneNumberVar;
         this.address = addressVar;
         this.description = descriptionVar;
         this.openingHours = openingHoursVar;
     }
-    public POI(String nameVar, String addressVar, String descriptionVar, String endAddressVar) {
+    public POI(String phoneNumberVar, String nameVar, String addressVar, String descriptionVar, String endAddressVar) {
         this.type = Type.WALKING_TRAIL;
         this.name = nameVar;
+        this.phoneNumber = phoneNumberVar;
         this.address = addressVar;
         this.description = descriptionVar;
         this.endAddress = endAddressVar;
@@ -65,8 +58,12 @@ public class POI {
     public String getEndAddress() {
         return this.endAddress;
     }
-    public Type getType() {
+    public POI.Type getType() {
         return this.type;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     //setters
@@ -85,21 +82,13 @@ public class POI {
     public void setEndAddress(String endAddressVar) {
         this.endAddress = endAddressVar;
     }
-    public void setType(int typeVar) {
-        switch (typeVar) {
-            case (0):
-                this.type = Type.SHOP;
-                break;
-            case (1):
-                this.type = Type.RESTAURANT;
-                break;
-            case (2):
-                this.type = Type.ATTRACTION;
-                break;
-            case (3):
-                this.type = Type.WALKING_TRAIL;
-                break;
-        }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setType(POI.Type type) {
+        this.type = type;
     }
 
     public String printOpeningHours() {
@@ -134,20 +123,29 @@ public class POI {
         return hoursString.toString();
     }
 
+    @Override
     public String toString() {
-        if (this.type == Type.WALKING_TRAIL) {
-            return ("Name: " + this.name + "\n" +
-                    "Address: " + this.address + "\n" +
-                    "End address: " + this.endAddress + "\n" +
-                    "Description: " + this.description + "\n" +
-                    "Type: " + this.type + "\n");
+        if (type == Type.WALKING_TRAIL)
+        {
+            return "POI{" +
+                    "name='" + name + '\'' +
+                    ", address='" + address + '\'' +
+                    ", phoneNumber='" + phoneNumber + '\'' +
+                    ", description='" + description + '\'' +
+                    ", type=" + type +
+                    ", endAddress='" + endAddress + '\'' +
+                    '}';
         }
-        else {
-            return ("Name: " + this.name + "\n" +
-                    "Address: " + this.address + "\n" +
-                    "Description: " + this.description + "\n" +
-                    "Opening hours: " + printOpeningHours() + "\n" +
-                    "Type: " + this.type + "\n");
+        else
+        {
+            return "POI{" +
+                    "name='" + name + '\'' +
+                    ", address='" + address + '\'' +
+                    ", phoneNumber='" + phoneNumber + '\'' +
+                    ", description='" + description + '\'' +
+                    ", openingHours=" + openingHours +
+                    ", type=" + type +
+                    '}';
         }
     }
 }
