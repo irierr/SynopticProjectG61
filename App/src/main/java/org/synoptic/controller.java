@@ -148,14 +148,14 @@ public class controller implements Initializable {
     }
 
 
-    /* Shops Page -------------------------------------------------------------*/
+    /* Directory Page -------------------------------------------------------------*/
 
-    @FXML private Label ShopName = new Label();
-    @FXML private Label Description = new Label();
-    @FXML private Label OpeningHours = new Label();
+    @FXML private Label POIName = new Label();
+    @FXML private Label POIDescription = new Label();
+    @FXML private TableView POIOpeningHours = new TableView();
     @FXML private ListView DirectoryList = new ListView();
-    @FXML private ListView StockList = new ListView();
-    @FXML private ImageView ShopImage = new ImageView();
+    @FXML private ImageView POIImage = new ImageView();
+
 
     /* Activity Page ----------------------------------------------------------*/
 
