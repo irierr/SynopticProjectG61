@@ -12,82 +12,84 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.Pane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-         prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1"
-         xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+    <tabs>
+        <Tab text="Info">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="52.0" prefWidth="296.0" text="Information Fact File" />
+                        <VBox prefHeight="364.0" prefWidth="371.0">
+                            <children>
+                                <Label prefHeight="25.0" prefWidth="194.0" text="Lobitos &amp; Piedritas" wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="296.0" text="Information Fact File" />
+                        <VBox alignment="CENTER_RIGHT" layoutX="13.0" layoutY="55.0" prefHeight="647.0" prefWidth="371.0">
+                            <children>
+                                <Label prefHeight="25.0" prefWidth="377.0" text="Lobitos &amp; Piedritas: Climate" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="As both Lobitos and Piedritas are located in Piura, the climate is typically tropical; very warm and very dry. The temperature ranges can be seen in the graph below, although these areas are typically hottest during there summer months (between December to March)" textAlignment="CENTER" wrappingWidth="371.21630859375">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <ImageView fitHeight="114.0" fitWidth="373.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Temps.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The average rainfall various a lot throughout the year, with the largest averages appearing in the summer months. But due to the arid conditions, rainfall is lower than 100mm (4 inches) per year. Apart from in the case of severe El Niño events, as these can provoke major flooding which raises the annual precipiation to as high as 4,000mm (157.5 inches)" textAlignment="CENTER" wrappingWidth="368.27490234375">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <ImageView fitHeight="70.0" fitWidth="374.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Rain.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The last major El Niño event that occurred in the Piura region was in 2017. The previous major one happened between 1997-1998 and it caused the optimal conditions for surfing. This resulted in an influx of surfers and tourists from 1998 to the late 2000s. Normally, these events only occur every 15-20 years, but recently, it has been occuring more frequently due to climate change. " textAlignment="CENTER" wrappingWidth="370.2437744140625">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document and Google weather for the graphs" textAlignment="CENTER" wrappingWidth="368.1996765136719">
+                                    <font>
+                                        <Font name="Century Gothic" size="11.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </Text>
+                        <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#backInfoButton" text="Back">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
     <stylesheets>
-        <URL value="@stylesheet.css"/>
+        <URL value="@stylesheet.css" />
     </stylesheets>
-    <Tab text="Info">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="52.0" prefWidth="296.0"
-                   text="Information Fact File"/>
-            <VBox prefHeight="364.0" prefWidth="371.0">
-                <Label prefHeight="25.0" prefWidth="194.0" text="Lobitos &amp; Piedritas" wrapText="true"/>
-                <Pane prefHeight="200.0" prefWidth="200.0"/>
-                <Label prefHeight="25.0" prefWidth="194.0" text="Lobitos &amp; Piedritas" wrapText="true"/>
-            </VBox>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="296.0"
-                   text="Information Fact File"/>
-            <VBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="66.0" prefHeight="647.0" prefWidth="371.0">
-                <Label prefHeight="25.0" prefWidth="377.0" text="Lobitos &amp; Piedritas: Climate"/>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="As both Lobitos and Piedritas are located in Piura, the climate is typically tropical; very warm and very dry. The temperature ranges can be seen in the graph below, although these areas are typically hottest during there summer months (between December to March)"
-                      textAlignment="CENTER" wrappingWidth="371.21630859375">
-                    <font>
-                        <Font name="Century Gothic" size="13.0"/>
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="10.0" top="10.0"/>
-                    </VBox.margin>
-                </Text>
-                <ImageView fitHeight="114.0" fitWidth="373.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@Temps.jpg"/>
-                </ImageView>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="The average rainfall various a lot throughout the year, with the largest averages appearing in the summer months. But due to the arid conditions, rainfall is lower than 100mm (4 inches) per year. Apart from in the case of severe El Niño events, as these can provoke major flooding which raises the annual precipiation to as high as 4,000mm (157.5 inches)"
-                      textAlignment="CENTER" wrappingWidth="368.27490234375">
-                    <font>
-                        <Font name="Century Gothic" size="13.0"/>
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="10.0" top="10.0"/>
-                    </VBox.margin>
-                </Text>
-                <ImageView fitHeight="70.0" fitWidth="374.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@Rain.jpg"/>
-                </ImageView>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="The last major El Niño event that occurred in the Piura region was in 2017. The previous major one happened between 1997-1998 and it caused the optimal conditions for surfing. This resulted in an influx of surfers and tourists from 1998 to the late 2000s. Normally, these events only occur every 15-20 years, but recently, it has been occuring more frequently due to climate change. "
-                      textAlignment="CENTER" wrappingWidth="370.2437744140625">
-                    <font>
-                        <Font name="Century Gothic" size="13.0"/>
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="10.0" top="10.0"/>
-                    </VBox.margin>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document and Google weather for the graphs"
-                      textAlignment="CENTER" wrappingWidth="368.1996765136719">
-                    <font>
-                        <Font name="Century Gothic" size="11.0"/>
-                    </font>
-                    <VBox.margin>
-                        <Insets top="10.0"/>
-                    </VBox.margin>
-                </Text>
-                <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                        mnemonicParsing="false" onAction="#backInfoButton" text="Back">
-                    <font>
-                        <Font name="Century Gothic" size="13.0"/>
-                    </font>
-                </Button>
-            </VBox>
-        </AnchorPane>
-    </Tab>
 </TabPane>
