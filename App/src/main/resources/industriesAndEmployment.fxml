@@ -11,84 +11,75 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-         prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1"
-         xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+   <tabs>
+      <Tab text="Info">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" prefHeight="55.0" prefWidth="296.0" text="Information Fact File" />
+                  <VBox alignment="CENTER_RIGHT" layoutX="8.0" layoutY="30.0" prefHeight="678.0" prefWidth="384.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="402.0" text="Lobitos &amp; Piedritas: Industries &amp; " wrapText="true" />
+                        <Label prefHeight="25.0" prefWidth="403.0" stylesheets="@stylesheet.css" text="Employment" VBox.vgrow="SOMETIMES" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The residents of Piedritas engage in a variety of commercial activities, while roughly half of the population in Lobitos works in the fishing industry" textAlignment="CENTER" wrappingWidth="382.21630859375">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Some residents engage in small-scale subsistence agriculture and raise goats, pigs, or chickens and sell the meat and dairy products. The people of Lobitos and Piedritas are heavily reliant on the nearest city,Talara, for buying food and goods and accessing essential services such as banks and hospitals as they are not available locally. " textAlignment="CENTER" wrappingWidth="383.0951175689697">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artisanal and commercial fishing are practiced along the coast. The Talara Provincial Municipality and Lobitos District Municipality provide some employment opportunities, including street cleaning,garbage collection, security, trades, and when available, local construction projects. Previous administrations used to hire over 50% of the population on a rotating basis throughout the year,however, the current mayor of Lobitos stopped this practice because it was financially unsustainable and fostered corruption and misuse of public funds.Opportunities for advancing individual or household economic prospects through municipal employment are limited." textAlignment="CENTER" wrappingWidth="382.3080825805664">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Although the oil industry is one of the largestindustries in Lobitos, the only residents employedwork predominantly as security guards. Over thelast decade, oil prices have declined severely, whichhas reduced the amount of oil royalties the centralgovernment can provide to the Lobitos DistrictMunicipality. " textAlignment="CENTER" wrappingWidth="380.819580078125">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The oil companies built several oil platforms on topof reefs that provide an important habitat for marinelife. These platforms have disrupted the local fishingindustry because the oil companies prohibit fishingnear the platforms. Oil spills happen frequently andoften go unnoticed due to a lack of governmentpatrols and regulation." textAlignment="CENTER" wrappingWidth="381.4782409667969">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document." textAlignment="CENTER" wrappingWidth="368.1996765136719">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#backInfoButton" text="Back">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
    <stylesheets>
-      <URL value="@stylesheet.css"/>
+      <URL value="@stylesheet.css" />
    </stylesheets>
-   <Tab text="Info">
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
-         <Label layoutX="14.0" layoutY="14.0" prefHeight="55.0" prefWidth="296.0" text="Information Fact File"/>
-         <VBox alignment="CENTER_RIGHT" layoutX="8.0" layoutY="51.0" prefHeight="671.0" prefWidth="382.0">
-            <Label prefHeight="25.0" prefWidth="402.0" text="Lobitos &amp; Piedritas: Industries &amp; "
-                   wrapText="true"/>
-            <Label prefHeight="25.0" prefWidth="403.0" stylesheets="@stylesheet.css" text="Employment"
-                   VBox.vgrow="SOMETIMES"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="The residents of Piedritas engage in a variety of commercial activities, while roughly half of the population in Lobitos works in the fishing industry"
-                  textAlignment="CENTER" wrappingWidth="371.21630859375">
-               <font>
-                  <Font name="Century Gothic" size="12.0"/>
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0"/>
-               </VBox.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="Some residents engage in small-scale subsistence agriculture and raise goats, pigs, or chickens and sell the meat and dairy products. The people of Lobitos and Piedritas are heavily reliant on the nearest city,Talara, for buying food and goods and accessing essential services such as banks and hospitals as they are not available locally. "
-                  textAlignment="CENTER" wrappingWidth="371.0951175689697">
-               <font>
-                  <Font name="Century Gothic" size="12.0"/>
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0"/>
-               </VBox.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="Artisanal and commercial fishing are practiced along the coast. The Talara Provincial Municipality and Lobitos District Municipality provide some employment opportunities, including street cleaning,garbage collection, security, trades, and when available, local construction projects. Previous administrations used to hire over 50% of the population on a rotating basis throughout the year,however, the current mayor of Lobitos stopped this practice because it was financially unsustainable and fostered corruption and misuse of public funds.Opportunities for advancing individual or household economic prospects through municipal employment are limited."
-                  textAlignment="CENTER" wrappingWidth="370.3080825805664">
-               <font>
-                  <Font name="Century Gothic" size="12.0"/>
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0"/>
-               </VBox.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="Although the oil industry is one of the largestindustries in Lobitos, the only residents employedwork predominantly as security guards. Over thelast decade, oil prices have declined severely, whichhas reduced the amount of oil royalties the centralgovernment can provide to the Lobitos DistrictMunicipality. "
-                  textAlignment="CENTER" wrappingWidth="380.819580078125">
-               <font>
-                  <Font name="Century Gothic" size="12.0"/>
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0"/>
-               </VBox.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="The oil companies built several oil platforms on topof reefs that provide an important habitat for marinelife. These platforms have disrupted the local fishingindustry because the oil companies prohibit fishingnear the platforms. Oil spills happen frequently andoften go unnoticed due to a lack of governmentpatrols and regulation."
-                  textAlignment="CENTER" wrappingWidth="381.4782409667969">
-               <font>
-                  <Font name="Century Gothic" size="12.0"/>
-               </font>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="All information from this fact file was provided by the Engineers without Borders 2021 Design Brief document and Google weather for the graphs"
-                  textAlignment="CENTER" wrappingWidth="368.1996765136719">
-               <font>
-                  <Font name="Century Gothic" size="11.0"/>
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0"/>
-               </VBox.margin>
-            </Text>
-            <Button fx:id="backInfo" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false"
-                    onAction="#backInfoButton" text="Back">
-               <font>
-                  <Font name="Century Gothic" size="13.0"/>
-               </font>
-            </Button>
-         </VBox>
-      </AnchorPane>
-   </Tab>
 </TabPane>
