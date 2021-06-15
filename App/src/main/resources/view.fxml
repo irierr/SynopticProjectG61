@@ -1,21 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import java.net.URL?>
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
   <stylesheets>
-      <URL value="@stylesheet.css"/>
+      <URL value="@stylesheet.css" />
   </stylesheets>
   <Tab text="Directory">
-      <fx:include source = "directory.fxml"/>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <children>
+              <ListView fx:id="DirectoryList" layoutX="7.0" layoutY="7.0" prefHeight="200.0" prefWidth="386.0" />
+            <VBox layoutX="6.0" layoutY="210.0" prefHeight="502.0" prefWidth="389.0">
+               <children>
+                    <Label fx:id="POIName" text="shop name" />
+                    <GridPane prefHeight="135.0" prefWidth="386.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <Label fx:id="POIDescription" text="shop description" />
+                            <ImageView fx:id="POIImage" fitHeight="78.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        </children>
+                    </GridPane>
+                    <Label text="Opening Hours:" />
+                  <TableView fx:id="POIOpeningHours" prefHeight="182.0" prefWidth="389.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Day" />
+                      <TableColumn prefWidth="75.0" text="Hours" />
+                    </columns>
+                  </TableView>
+                  <HBox prefHeight="26.0" prefWidth="305.0">
+                     <children>
+                        <Label text="Phone Number:" />
+                        <Label fx:id="POIPhoneNumber" text="Label" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="299.0">
+                     <children>
+                          <Label text="Address:" />
+                        <Label fx:id="POIAddress" text="Label" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+          </children>
+      </AnchorPane>
   </Tab>
   <Tab text="Activities">
-      <fx:include  source = "activity.fxml"/>
+      <fx:include source="activity.fxml" />
   </Tab>
   <Tab text="Map">
-        <fx:include source="map.fxml"/>
+        <fx:include source="map.fxml" />
   </Tab>
   <Tab text="Info">
-      <fx:include source="info.fxml"/>
+      <fx:include source="info.fxml" />
   </Tab>
 </TabPane>
