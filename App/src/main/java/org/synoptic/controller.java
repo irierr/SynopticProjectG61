@@ -116,9 +116,9 @@ public class controller implements Initializable {
 
     /* Directory Page ------------------------------------------------------------------------------------------------*/
 
-    @FXML private Label POIName = new Label();
-    @FXML private Label POIDescription = new Label();
-    @FXML private TableView POIOpeningHours = new TableView();
+    @FXML private Label ShopName = new Label();
+    @FXML private Label Description = new Label();
+    @FXML private Label OpeningHours = new Label();
     @FXML private ListView DirectoryList = new ListView();
     @FXML private ImageView POIImage = new ImageView();
 
