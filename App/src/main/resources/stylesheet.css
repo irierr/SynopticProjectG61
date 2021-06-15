@@ -3,7 +3,7 @@
     -fx-tab-max-width: 78px;
     -fx-tab-min-height:70px;
     -fx-tab-max-height:70px;
-    -fx-background-color: Grey;
+    -fx-background-color: White;
 }
 
 .tab {
@@ -17,11 +17,11 @@
 }
 
 .tab-pane *.tab-header-background{
-    -fx-background-color: Grey;
+    -fx-background-color: White;
 }
 
 AnchorPane {
-    -fx-background-color: Grey;
+    -fx-background-color: White;
 }
 
 .label {
