@@ -1,34 +1,24 @@
 package org.synoptic;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.SingleSelectionModel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class controller implements Initializable {
-
-    public ImageView mapImage = new ImageView();
-    public ScrollPane scroller = new ScrollPane();
-    final DoubleProperty zoomProperty = new SimpleDoubleProperty(400);
 
     public static final int DEFAULT_WIDTH = 400;
     public static final int DEFAULT_HEIGHT = 800;
@@ -52,30 +42,6 @@ public class controller implements Initializable {
         });
     }
 
-
-    private void initMap(){
-        scroller.setHvalue(0.5);
-        scroller.setVvalue(1);
-        mapImage.preserveRatioProperty().set(true);
-
-        zoomProperty.addListener(arg0 -> {
-            double oldV = scroller.getVvalue() ;
-            double oldH = scroller.getHvalue();
-            mapImage.setFitWidth(zoomProperty.get() * 4);
-            mapImage.setFitHeight(zoomProperty.get() * 3);
-            scroller.setVvalue(oldV);
-            scroller.setHvalue(oldH);
-        });
-
-        scroller.addEventFilter(ScrollEvent.SCROLL, event -> {
-            if ((event.getDeltaY() > 0) && (mapImage.getFitHeight() < 2130)) {
-                zoomProperty.set(zoomProperty.get() * 1.1);
-            } else if ((event.getDeltaY() < 0) && (mapImage.getFitWidth() > 1455)) {
-                zoomProperty.set(zoomProperty.get() / 1.1);
-            }
-        });
-    }
-
     public Scene loadScene(String path) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(path));
         return new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -87,7 +53,7 @@ public class controller implements Initializable {
         stage.show();
     }
 
-    /*  Info Page -----------------------------------------------------------*/
+    /*  Info Page ----------------------------------------------------------------------------------------------------*/
 
     @FXML public Button climateButton;
     public void climateButton() throws IOException{
@@ -148,7 +114,7 @@ public class controller implements Initializable {
     }
 
 
-    /* Shops Page -------------------------------------------------------------*/
+    /* Shops Page ----------------------------------------------------------------------------------------------------*/
 
     @FXML private Label ShopName = new Label();
     @FXML private Label Description = new Label();
@@ -157,7 +123,7 @@ public class controller implements Initializable {
     @FXML private ListView StockList = new ListView();
     @FXML private ImageView ShopImage = new ImageView();
 
-    /* Activity Page ----------------------------------------------------------*/
+    /* Activity Page -------------------------------------------------------------------------------------------------*/
 
     @FXML private ListView ActivityList = new ListView();
     @FXML private Label ActivityDescription = new Label();
@@ -173,5 +139,39 @@ public class controller implements Initializable {
     public void ActivityDirectoryButton() throws IOException
     {
 
+    }
+
+    /* Map Page ------------------------------------------------------------------------------------------------------*/
+
+    @FXML public ImageView mapImage = new ImageView();
+    @FXML ScrollPane scroller = new ScrollPane();
+    final DoubleProperty zoomProperty = new SimpleDoubleProperty(400);
+
+    /**
+     * Initializes the map to the correct position and adds listeners for zooming functionality.
+     * @author Irie Railton
+     * @see <a href = "http://www.java2s.com/Code/Java/JavaFX/JavaFXImageZoomExample.htm">JavaFX Image Zoom Example</a>
+     **/
+    private void initMap(){
+        scroller.setHvalue(0.5);
+        scroller.setVvalue(1);
+        mapImage.preserveRatioProperty().set(true);
+
+        zoomProperty.addListener(arg0 -> {
+            double oldV = scroller.getVvalue() ;
+            double oldH = scroller.getHvalue();
+            mapImage.setFitWidth(zoomProperty.get() * 4);
+            mapImage.setFitHeight(zoomProperty.get() * 3);
+            scroller.setVvalue(oldV);
+            scroller.setHvalue(oldH);
+        });
+
+        scroller.addEventFilter(ScrollEvent.SCROLL, event -> {
+            if ((event.getDeltaY() > 0) && (mapImage.getFitHeight() < 2130)) {
+                zoomProperty.set(zoomProperty.get() * 1.1);
+            } else if ((event.getDeltaY() < 0) && (mapImage.getFitWidth() > 1455)) {
+                zoomProperty.set(zoomProperty.get() / 1.1);
+            }
+        });
     }
 }
