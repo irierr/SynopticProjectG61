@@ -4,25 +4,27 @@ import java.util.HashMap;
 import java.time.LocalTime;
 
 public class POI {
-    private enum Type {
+    private enum Type {     // Used to identify different types of location
         SHOP,
         RESTAURANT,
         ATTRACTION,
         WALKING_TRAIL
     }
 
-    private String name;
+    private String name;                // attributes for identification
     private String address;
     private String description;
-    private HashMap<Integer, LocalTime[]> openingHours;
+    private HashMap<Integer, LocalTime[]> openingHours;     // hashmap of opening hours
     private Type type;
-    private String endAddress;
+    private String endAddress;      // used only for walking trails, to find a start and end point
 
 
+    // default constructor
     public POI() {
         this.type = null;
     }
 
+    // the parameterised constructor for shops, restaurants and attractions
     public POI(int typeVar, String nameVar, String addressVar, String descriptionVar, HashMap<Integer, LocalTime[]> openingHoursVar) {
         switch (typeVar) {
             case (0):
@@ -40,6 +42,7 @@ public class POI {
         this.description = descriptionVar;
         this.openingHours = openingHoursVar;
     }
+    // the parameterised constructor for walking trails
     public POI(String nameVar, String addressVar, String descriptionVar, String endAddressVar) {
         this.type = Type.WALKING_TRAIL;
         this.name = nameVar;
@@ -102,11 +105,12 @@ public class POI {
         }
     }
 
+    // converts openingHours hashmap into easy-to-read string
     public String printOpeningHours() {
         StringBuilder hoursString = new StringBuilder();
-        for (int i : this.openingHours.keySet()) {
+        for (int i : this.openingHours.keySet()) {      // iterates through the opening hours hashmap
             switch(i) {
-                case(1):
+                case(1):        // checks for which day it is
                     hoursString.append("Monday: ");
                     break;
                 case(2):
@@ -128,21 +132,22 @@ public class POI {
                     hoursString.append("Sunday: ");
                     break;
             }
-            LocalTime[] hours = openingHours.get(i);
-            hoursString.append(hours[0]).append(" - ").append(hours[1]).append("\n");
+            LocalTime[] hours = openingHours.get(i);        // gets the opening hours
+            hoursString.append(hours[0]).append(" - ").append(hours[1]).append("\n");       // appends the details to a string and adds newline characters
         }
-        return hoursString.toString();
+        return hoursString.toString();      // returns the complete string
     }
 
+    // toString to print details about the POI
     public String toString() {
-        if (this.type == Type.WALKING_TRAIL) {
+        if (this.type == Type.WALKING_TRAIL) {      // prints walking trail details, or...
             return ("Name: " + this.name + "\n" +
                     "Address: " + this.address + "\n" +
                     "End address: " + this.endAddress + "\n" +
                     "Description: " + this.description + "\n" +
                     "Type: " + this.type + "\n");
         }
-        else {
+        else {      // ...prints details for other types
             return ("Name: " + this.name + "\n" +
                     "Address: " + this.address + "\n" +
                     "Description: " + this.description + "\n" +
