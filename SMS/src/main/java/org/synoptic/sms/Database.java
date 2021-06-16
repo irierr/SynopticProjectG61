@@ -40,15 +40,28 @@ public class Database {
     public static List<LocalTime> getOpeningTimes(String phoneNum){
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT open, close FROM OpeningTimes WHERE id = " + phoneNum + ";");
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT open, close FROM OpeningTimes WHERE id = ? ORDER BY day ASC;");
+            statement.setString(1, phoneNum);
             ResultSet resultSet = statement.executeQuery();
+
             List<LocalTime> openingTimes = new ArrayList<>();
+            String[] times = new String[2];
 
             while(resultSet.next()){
-                openingTimes.add(LocalTime.parse(resultSet.getString("Open"), DateTimeFormatter.ofPattern("HH:mm")));
-                openingTimes.add(LocalTime.parse(resultSet.getString("Close"), DateTimeFormatter.ofPattern("HH:mm")));
+                String[] columns = {"open", "close"};
+                for (int i = 0; i < 2; i++) {
+                    times[i] = resultSet.getString(columns[i]);
+                    if(times[i].equalsIgnoreCase("closed")){
+                        openingTimes.add(LocalTime.of(23, 59));
+                    }
+                    else{
+                        if(times[i].length() < 5){
+                            times[i] = "0" + times[i];
+                        }
+                        openingTimes.add(LocalTime.parse(times[i], DateTimeFormatter.ofPattern("HH:mm")));
+                    }
+                }
             }
-
             return openingTimes;
         }
         catch (SQLException e)
@@ -69,7 +82,22 @@ public class Database {
     public static boolean updateOpeningTimes(String phoneNum, int day, List<LocalTime> times){
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("UPDATE OpeningTimes SET open = " + times.get(0).toString() + ", close = " + times.get(1).toString() + " WHERE id =" + phoneNum + " AND day =" + day + ";");
+            PreparedStatement statement;
+            if(times.isEmpty()){
+                statement = getDatabaseConnection().prepareStatement("UPDATE OpeningTimes SET open = ?, close = ? WHERE id = ? AND day = ?;");
+                statement.setString(1, "CLOSED");
+                statement.setString(2, "CLOSED");
+                statement.setString(3, phoneNum);
+                statement.setInt(4, day);
+            }
+            else{
+                statement = getDatabaseConnection().prepareStatement("UPDATE OpeningTimes SET open = ?, close = ? WHERE id = ? AND day = ?;");
+                statement.setString(1, "'" + times.get(0).toString() + "'");
+                statement.setString(2, "'" + times.get(1).toString() + "'");
+                statement.setString(3, phoneNum);
+                statement.setInt(4, day);
+
+            }
             statement.executeUpdate();
 
             return true;
@@ -91,7 +119,9 @@ public class Database {
     public static boolean updateAnnouncement(String phoneNum, String announcement){
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("UPDATE DirectoryEntry SET announcement = " + announcement + " WHERE phone = " + phoneNum + ";");
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("UPDATE DirectoryEntry SET announcement = ? WHERE phone = ?;");
+            statement.setString(1, announcement);
+            statement.setString(2, phoneNum);
             statement.executeUpdate();
 
             return true;

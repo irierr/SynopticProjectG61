@@ -3,6 +3,7 @@ package org.synoptic.sms;
         import java.time.LocalTime;
         import java.time.format.DateTimeFormatter;
         import java.util.ArrayList;
+        import java.util.Arrays;
         import java.util.List;
         import java.util.Scanner;
 
@@ -43,7 +44,7 @@ public class SMSServiceSimulator
                 boolean updatingTimes = true;
                 while(updatingTimes){
                     List<LocalTime> currOpenTimes = Database.getOpeningTimes(phoneNumber);
-                    System.out.println("Your current opening times are:\n " + timesToString(currOpenTimes) + "To change the opening times for a day send the number corresponding to the day (1 for Monday - 7 For Sunday). To stop editing opening times send stop");
+                    System.out.println("Your current opening times are:\n" + timesToString(currOpenTimes) + "To change the opening times for a day send the number corresponding to the day (1 for Monday - 7 For Sunday). To stop editing opening times send stop");
                     input = in.nextLine();
                     if(input.equalsIgnoreCase("stop")){
                         updatingTimes = false;
@@ -51,19 +52,24 @@ public class SMSServiceSimulator
                     else {
                         int day = Integer.parseInt(input);
                         if(day > 0 && day < 8){
-                            System.out.println("Enter your times for " + day);
+                            System.out.println("Enter your opening times for " + (day == 1 ? "Monday" : (day == 2 ? "Tuesday" : (day == 3 ? "Wednesday" : (day == 4 ? "Thursday" : (day == 5 ? "Friday" : (day== 6 ? "Saturday" : "Sunday")))))) + ". If you are closed on that day send closed");
                             input = in.nextLine();
-                            List<LocalTime> newOpenTime = formatTimes(input);
+                            List<LocalTime> newOpenTime;
+                            if(input.equalsIgnoreCase("closed")){
+                                newOpenTime = new ArrayList<>();
+                            }
+                            else {
+                                newOpenTime = formatTimes(input);
+                            }
                             if(Database.updateOpeningTimes(phoneNumber, day, newOpenTime)){
                                 System.out.println("Successfully updated the opening times for " + day + " to " + input);
                             }
                         }
                     }
-
                 }
             }
             else if(input.equalsIgnoreCase("announcement")){
-                System.out.println("Please input your new announcement to display to customers (Must be under 160 characters");
+                System.out.println("Please input your new announcement to display to customers (Must be under 160 characters)");
                 input = in.nextLine();
                 if(Database.updateAnnouncement(phoneNumber, input)){
                     System.out.println("Announcement successfully updated");
@@ -80,10 +86,13 @@ public class SMSServiceSimulator
      */
     public List<LocalTime> formatTimes(String input){
         List<LocalTime> openingTimes = new ArrayList<>();
-        String[] times = input.split(" - ");
+        input = input.replace(" ", "");
+        String[] times = input.split("-");
+        System.out.println(Arrays.toString(times));
         for (int i = 0; i < 2; i++) {
             if(times[i].length() < 5){
-                times[i] = "0" + times[1];
+                System.out.println("here");
+                times[i] = "0" + times[i];
             }
             openingTimes.add(LocalTime.parse(times[i], timeFormatter));
         }
@@ -100,14 +109,19 @@ public class SMSServiceSimulator
         StringBuilder openingTimes = new StringBuilder();
         String[] days = {"Monday: ", "Tuesday: ", "Wednesday: ", "Thursday: ", "Friday: ", "Saturday: ", "Sunday: "};
         for (int i = 0; i < 14; i+=2) {
-            openingTimes.append(days[i / 2]).append(times.get(i).toString()).append(" - ").append(times.get(i + 1).toString()).append("\n");
+            if(times.get(i).equals(times.get(i+1))){
+                openingTimes.append(days[i/2]).append("closed\n");
+            }
+            else {
+                openingTimes.append(days[i / 2]).append(times.get(i).toString()).append(" - ").append(times.get(i + 1).toString()).append("\n");
+            }
         }
         return openingTimes.toString();
     }
 
 
     public static void main(String[] args) {
-        String phoneNum = "0123456789";
+        String phoneNum = "777";
         SMSServiceSimulator simulator = new SMSServiceSimulator(phoneNum);
         simulator.listenForTexts();
     }
