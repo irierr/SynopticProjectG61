@@ -31,7 +31,7 @@ class SMSServiceSimulatorTest {
         String testString = """
                 Monday: 09:00 - 16:30
                 Tuesday: 03:00 - 04:00
-                Wednesday: 05:30 - 06:30
+                Wednesday: 09:00 - 16:30
                 Thursday: 07:01 - 08:45
                 Friday: 09:00 - 10:30
                 Saturday: 10:00 - 16:00
