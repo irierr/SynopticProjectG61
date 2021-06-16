@@ -61,7 +61,6 @@ public class POI {
     public POI.Type getType() {
         return this.type;
     }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -82,11 +81,9 @@ public class POI {
     public void setEndAddress(String endAddressVar) {
         this.endAddress = endAddressVar;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
     public void setType(POI.Type type) {
         this.type = type;
     }
