@@ -85,13 +85,42 @@ public class DirectoryEntry {
         this.phoneNumber = phoneNumber;
     }
 
+    public String dayNumberToString(int dayNumber)
+    {
+        switch (dayNumber)
+        {
+            case 1 -> {
+                return "Monday";
+            }
+            case 2 -> {
+                return "Tuesday";
+            }
+            case 3 -> {
+                return "Wednesday";
+            }
+            case 4 -> {
+                return "Thursday";
+            }
+            case 5 -> {
+                return "Friday";
+            }
+            case 6 -> {
+                return "Saturday";
+            }
+            case 7 -> {
+                return "Sunday";
+            }
+            default -> throw new IllegalArgumentException("Day number must be between 1 and 7");
+        }
+    }
+
     /**
      * Method to print the opening hours hashmap as a legible string
      *
      * @return string of the opening hours in a readable format
      * @author Harry Whitelam
      */
-    public String printOpeningHours() {
+    public String printOpeningHours(){
         StringBuilder hoursString = new StringBuilder();
         for (int i : this.openingHours.keySet()) {
             switch (i) {
