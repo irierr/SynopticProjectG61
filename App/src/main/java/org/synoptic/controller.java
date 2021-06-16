@@ -24,10 +24,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalTime;
+import java.util.*;
 
 public class controller implements Initializable {
 
@@ -55,6 +53,14 @@ public class controller implements Initializable {
                         DEQueryDesc.setText(entry.getDescription());
                         DEQueryPhone.setText(entry.getPhoneNumber());
                         DEQueryAddress.setText(entry.getAddress());
+                        List<Map.Entry<String, LocalTime[]>> hours = new ArrayList<>();
+
+                        for (int i : entry.getOpeningHours().keySet())
+                        {
+                            hours.add(new AbstractMap.SimpleEntry(entry.dayNumberToString(i), entry.getOpeningHours().get(i)));
+                        }
+
+                        DEOpeningHours.setItems(FXCollections.observableArrayList(hours));
                     }
                     else
                     {
@@ -62,6 +68,7 @@ public class controller implements Initializable {
                         DEQueryDesc.setText(null);
                         DEQueryPhone.setText(null);
                         DEQueryAddress.setText(null);
+                        DEOpeningHours.getItems().clear();
                     }
 
                 }
@@ -177,14 +184,12 @@ public class controller implements Initializable {
 
     }
 
-
     /* Directory Page ------------------------------------------------------------------------------------------------*/
 
     @FXML private Label DEName;
     @FXML private TextField DEQueryName, DEQueryPhone, DEQueryAddress;
     @FXML private TextArea DEQueryDesc;
-    @FXML private Label POIDescription;
-    @FXML private TableView POIOpeningHours = new TableView();
+    @FXML private TableView<Map.Entry<String, LocalTime[]>> DEOpeningHours = new TableView();
     @FXML private ListView<DirectoryEntry> DirectoryList = new ListView();
     @FXML private ImageView DirectoryEntryImage = new ImageView();
 
@@ -205,10 +210,16 @@ public class controller implements Initializable {
             }
         });
         try{
-            for (DirectoryEntry entry : Database.getAllDirectoryEntrys())
+            List<DirectoryEntry> directories = Database.getAllDirectoryEntrys();
+
+            for (DirectoryEntry entry : directories)
             {
                 DirectoryList.getItems().add(entry);
             }
+
+            DEOpeningHours.getColumns().get(0).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getKey()));
+            DEOpeningHours.getColumns().get(1).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0]));
+            DEOpeningHours.getColumns().get(2).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[1]));
         } catch (SQLException e)
         {
             //TODO Handle SQL Exception

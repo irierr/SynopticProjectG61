@@ -78,7 +78,7 @@
                      <VBox.margin>
                         <Insets bottom="5.0" top="7.0" />
                      </VBox.margin></Label>
-                  <TableView fx:id="POIOpeningHours" prefHeight="182.0" prefWidth="380.0">
+                  <TableView fx:id="DEOpeningHours" prefHeight="182.0" prefWidth="380.0">
                     <columns>
                       <TableColumn prefWidth="128.0" text="Day" />
                       <TableColumn prefWidth="130.0" text="Opening Time" />
