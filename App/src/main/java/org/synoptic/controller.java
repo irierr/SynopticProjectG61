@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -94,11 +95,14 @@ public class controller implements Initializable {
                             case ATTRACTION -> {
                                 attractionType.setText("Phone:");
                                 phoneOrAddress.setText(activity.getPhoneNumber());
+                                ActivityPlaceholder.setImage(waterImage);
                             }
                             case WALKING_TRAIL -> {
                                 attractionType.setText("End Address:");
                                 phoneOrAddress.setText(activity.getEndAddress());
+                                ActivityPlaceholder.setImage(activityImage);
                             }
+                            default -> throw new IllegalStateException("Unexpected value: " + activity.getType());
                         }
                     }
                     else
@@ -235,6 +239,9 @@ public class controller implements Initializable {
     @FXML private Label attractionType = new Label();
     @FXML private Button ActivityMapButton = new Button();
     @FXML private Button ActivityDirectoryButton = new Button();
+    @FXML private ImageView ActivityPlaceholder = new ImageView();
+    @FXML private Image waterImage = new Image("waterPlaceholder.jpg");
+    @FXML private Image activityImage = new Image("activityPlaceholder.jpg");
 
     public void loadActivities(Event event) {
         ActivityList.getItems().clear();
@@ -261,15 +268,6 @@ public class controller implements Initializable {
         }
     }
 
-    public void ActivityMapButton() throws IOException
-    {
-
-    }
-
-    public void ActivityDirectoryButton() throws IOException
-    {
-
-    }
 
     /* Map Page ------------------------------------------------------------------------------------------------------*/
 
