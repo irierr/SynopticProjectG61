@@ -35,12 +35,11 @@ public class Database {
     {
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("INSERT INTO DirectoryEntry (name, address, phone, description, type) VALUES (?, ?, ?, ?, ?);");
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("INSERT INTO DirectoryEntry (name, address, phone, description) VALUES (?, ?, ?, ?);");
             statement.setString(1, name);
             statement.setString(2, address);
             statement.setString(3, phoneNumber);
             statement.setString(4, description);
-            statement.setString(5, DirectoryEntry.Type.SHOP.toString());
 
             statement.executeUpdate();
 
@@ -62,7 +61,7 @@ public class Database {
 
         while (resultSet.next())
         {
-            DirectoryEntrys.add(new DirectoryEntry(DirectoryEntry.Type.valueOf(resultSet.getString("type")), resultSet.getString("phone"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("description"), new HashMap<Integer, LocalTime[]>(), resultSet.getString("announcement")));
+            DirectoryEntrys.add(new DirectoryEntry(resultSet.getString("phone"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("description"), new HashMap<Integer, LocalTime[]>(), resultSet.getString("announcement")));
         }
 
         return DirectoryEntrys;
