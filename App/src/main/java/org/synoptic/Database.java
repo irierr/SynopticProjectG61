@@ -68,6 +68,18 @@ public class Database {
         return DirectoryEntrys;
     }
 
+    /*public static List<Activity> getAllActivities() throws SQLException{
+
+        PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT * FROM Activities;");
+        ResultSet resultSet = statement.executeQuery();
+
+        List<Activity> Activities = new ArrayList<>();
+
+        while (resultSet.next()){
+            Activities.add(new Activity(Activity.Type.valueOf(resultSet.getString())))
+        }
+
+    }*/
 
     /*
         CREATE TABLE DirectoryEntry (

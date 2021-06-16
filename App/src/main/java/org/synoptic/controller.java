@@ -1,7 +1,9 @@
 package org.synoptic;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -14,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
@@ -22,6 +25,11 @@ import javafx.scene.control.SingleSelectionModel;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class controller implements Initializable {
@@ -39,14 +47,30 @@ public class controller implements Initializable {
 
         //listens for an input in the shops list sets selection to the number in the list that's been selected
         //initialising ShopList List
-        DirectoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        DirectoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DirectoryEntry>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
+            public void changed(ObservableValue<? extends DirectoryEntry> observable, DirectoryEntry oldValue, DirectoryEntry newValue) {
                 int selection = DirectoryList.getSelectionModel().getSelectedIndex();
                 if (selection != -1)
                 {
-                    System.out.println("Updated selected goal to: " + selection);
+                    System.out.println("Updated selected Directory entry to: " + selection);
+                    DirectoryEntry entry = DirectoryList.getItems().get(selection);
+
+                    if (entry != null)
+                    {
+                        DEQueryName.setText(entry.getName());
+                        DEQueryDesc.setText(entry.getDescription());
+                        DEQueryPhone.setText(entry.getPhoneNumber());
+                        DEQueryAddress.setText(entry.getAddress());
+                    }
+                    else
+                    {
+                        DEQueryName.setText(null);
+                        DEQueryDesc.setText(null);
+                        DEQueryPhone.setText(null);
+                        DEQueryAddress.setText(null);
+                    }
+
                 }
             }
         });
@@ -150,11 +174,53 @@ public class controller implements Initializable {
 
     /* Directory Page -------------------------------------------------------------*/
 
-    @FXML private Label POIName = new Label();
-    @FXML private Label POIDescription = new Label();
+    @FXML private Label DEName;
+    @FXML private TextField DEQueryName, DEQueryPhone, DEQueryAddress;
+    @FXML private TextArea DEQueryDesc;
+    @FXML private Label POIDescription;
     @FXML private TableView POIOpeningHours = new TableView();
-    @FXML private ListView DirectoryList = new ListView();
+    @FXML private ListView<DirectoryEntry> DirectoryList = new ListView();
     @FXML private ImageView POIImage = new ImageView();
+
+
+    public void loadDirectory(Event event) {
+        DirectoryList.getItems().clear();
+
+        //TODO add reference to stackoverflow
+
+        DirectoryList.setCellFactory(param -> new ListCell<DirectoryEntry>() {
+            @Override
+            protected void updateItem(DirectoryEntry item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.getName() == null)
+                {
+                    setText(null);
+                }
+                else
+                {
+                    setText(item.getName());
+                }
+
+            }
+        });
+
+        //try
+        //{
+
+            List<DirectoryEntry> list = new ArrayList<>();
+            list.add(new DirectoryEntry(DirectoryEntry.Type.SHOP, "1", "Bank", "1 Bank ROad", "Money", new HashMap<>(), ""));
+            list.add(new DirectoryEntry(DirectoryEntry.Type.SHOP, "2", "Bank 2", "2 Bank ROad", "Money", new HashMap<>(), ""));
+            for (DirectoryEntry entry : /*Database.getAllDirectoryEntrys()*/ list)
+            {
+                DirectoryList.getItems().add(entry);
+            }
+        //}
+        /*catch (SQLException e)
+        {
+            //TODO Handle SQL Exception
+        }*/
+    }
 
 
     /* Activity Page ----------------------------------------------------------*/
