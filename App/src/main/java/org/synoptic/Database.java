@@ -35,12 +35,11 @@ public class Database {
     {
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("INSERT INTO DirectoryEntry (name, address, phone, description, type) VALUES (?, ?, ?, ?, ?);");
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("INSERT INTO DirectoryEntry (name, address, phone, description) VALUES (?, ?, ?, ?);");
             statement.setString(1, name);
             statement.setString(2, address);
             statement.setString(3, phoneNumber);
             statement.setString(4, description);
-            statement.setString(5, DirectoryEntry.Type.SHOP.toString());
 
             statement.executeUpdate();
 
@@ -62,7 +61,7 @@ public class Database {
 
         while (resultSet.next())
         {
-            DirectoryEntrys.add(new DirectoryEntry(DirectoryEntry.Type.valueOf(resultSet.getString("type")), resultSet.getString("phone"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("description"), new HashMap<Integer, LocalTime[]>(), resultSet.getString("announcement")));
+            DirectoryEntrys.add(new DirectoryEntry(resultSet.getString("phone"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("description"), new HashMap<Integer, LocalTime[]>(), resultSet.getString("announcement")));
         }
 
         return DirectoryEntrys;
@@ -83,12 +82,31 @@ public class Database {
 
     /*
         CREATE TABLE DirectoryEntry (
-                     name VARCHAR(200),
-                     address VARCHAR(200),
-                     phone VARCHAR(20) NOT NULL PRIMARY KEY ,
-                     description VARCHAR(200),
-                     type VARCHAR(20),
-                     endAddress VARCHAR(200)
-);
-     */
+        phone VARCHAR(20) NOT NULL PRIMARY KEY,
+        name VARCHAR(200) NOT NULL,
+        address VARCHAR(200) NOT NULL,
+        description VARCHAR(200) NOT NULL,
+        type VARCHAR(20) NOT NULL,
+        );
+
+        CREATE TABLE OpeningTimes
+        (
+            id VARCHAR(20) NOT NULL,
+            open VARCHAR(5),
+            close VARCHAR(5),
+            day INT NOT NULL,
+            CONSTRAINT FOREIGN KEY(id) REFERENCES DirectoryEntry(phone) ON DELETE CASCADE ON UPDATE CASCADE
+        );
+
+        create table Activities
+        (
+            type VARCHAR(20) NOT NULL,
+            name VARCHAR(200) NOT NULL,
+            address VARCHAR(200) NOT NULL,
+            endAddress VARCHAR(200),
+            description VARCHAR(200) NOT NULL,
+            phone VARCHAR(20),
+            CONSTRAINT FOREIGN KEY(id) REFERENCES DirectoryEntry(phone) ON DELETE CASCADE ON UPDATE CASCADE
+        );
+    */
 }
