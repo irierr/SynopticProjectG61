@@ -34,7 +34,7 @@ public class SMSServiceSimulator
             input = in.nextLine();
             if(input.equalsIgnoreCase("start")) {
                 System.out.println("""
-                        Please input one the following:\s
+                        Please input one of the following:\s
                         opening times\s
                         announcement\s
                         """);
@@ -43,7 +43,7 @@ public class SMSServiceSimulator
                 boolean updatingTimes = true;
                 while(updatingTimes){
                     List<LocalTime> currOpenTimes = Database.getOpeningTimes(phoneNumber);
-                    System.out.println("Your current opening times are:\n " + timesToString(currOpenTimes) + "To change the opening times for a day send the number corresponding to the day (1 for Monday, 7 For Sunday). To stop editing opening times send stop");
+                    System.out.println("Your current opening times are:\n " + timesToString(currOpenTimes) + "To change the opening times for a day send the number corresponding to the day (1 for Monday - 7 For Sunday). To stop editing opening times send stop");
                     input = in.nextLine();
                     if(input.equalsIgnoreCase("stop")){
                         updatingTimes = false;
