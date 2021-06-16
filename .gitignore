@@ -197,4 +197,22 @@ dist
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
-.pnp.*
+.pnp.*App/target/classes/Age.jpg
+App/target/classes/Rain.jpg
+App/target/classes/Religion.jpg
+App/target/classes/Temps.jpg
+App/target/classes/activity.fxml
+App/target/classes/climate.fxml
+App/target/classes/demographics.fxml
+App/target/classes/directory.fxml
+App/target/classes/ecoProblems.fxml
+App/target/classes/history.fxml
+App/target/classes/industriesAndEmployment.fxml
+App/target/classes/info.fxml
+App/target/classes/lobitos_map.png
+App/target/classes/localArea.fxml
+App/target/classes/localAreaMap.jpg
+App/target/classes/map.fxml
+App/target/classes/org/
+App/target/classes/piedritas map.png
+App/target/maven-status/
