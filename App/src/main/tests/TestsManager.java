@@ -8,9 +8,9 @@ public class TestsManager {
      * Calls all test harnesses, running all tests on all classes
      *
      * @author Harry Whitelam
-     * @see POITests
+     * @see DirectoryEntryTests
      */
     public static void main() {
-        POITests.main();
+        DirectoryEntryTests.main();
     }
 }
