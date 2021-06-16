@@ -32,8 +32,10 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initMap();
 
-        //listens for an input in the shops list sets selection to the number in the list that's been selected
-        //initialising ShopList List
+        /**
+         * Listens for an input in the DirectoryEntry, sets selection to the number in the list that's been selected
+         * @author Darcey Gardiner
+         **/
         DirectoryList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             int selection = DirectoryList.getSelectionModel().getSelectedIndex();
             if (selection != -1)
@@ -47,6 +49,7 @@ public class Controller implements Initializable {
                     DEQueryDesc.setText(entry.getDescription());
                     DEQueryPhone.setText(entry.getPhoneNumber());
                     DEQueryAddress.setText(entry.getAddress());
+                    DEAnnouncement.setText(entry.getAnnouncement());
                     List<Map.Entry<String, LocalTime[]>> hours = new ArrayList<>();
 
                     for (int i : entry.getOpeningHours().keySet())
@@ -62,11 +65,17 @@ public class Controller implements Initializable {
                     DEQueryDesc.setText(null);
                     DEQueryPhone.setText(null);
                     DEQueryAddress.setText(null);
+                    DEAnnouncement.setText(null);
                     DEOpeningHours.getItems().clear();
                 }
 
             }
         });
+
+        /**
+         * Listens for an input in the Activities table, sets selection to the number in the list that's been selected
+         * @author Darcey Gardiner
+         **/
 
         ActivityList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Activity>) (observable, oldValue, newValue) -> {
             int selection = ActivityList.getSelectionModel().getSelectedIndex();
@@ -118,6 +127,11 @@ public class Controller implements Initializable {
     }
 
     /*  Info Page ----------------------------------------------------------------------------------------------------*/
+
+    /**
+     * Displays the Info tab with all the buttons and links to their relevant pages
+     * @author Darcey Gardiner
+     **/
 
     @FXML public Button climateButton;
     public void climateButton() throws IOException{
@@ -172,6 +186,7 @@ public class Controller implements Initializable {
         Stage closeStage = (Stage) backInfo.getScene().getWindow();
         closeStage.close();
         displayScene("views/view.fxml");
+        // This doesn't quite work as it's meant to show the selected tab as the Info tab
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(3);
 
@@ -179,17 +194,23 @@ public class Controller implements Initializable {
 
     /* Directory Page ------------------------------------------------------------------------------------------------*/
 
+    /**
+     * Initializes the Directory Tab with all of the shops/restaurants/businesses etc in the database and loads
+     * information on them based on which one is selected
+     * @author Darcey Gardiner
+     * @see <a href = "https://stackoverflow.com/questions/36657299/how-can-i-populate-a-listview-in-javafx-using-custom-objects">
+     *     Populating a list view</a>
+     **/
+
     @FXML private Label DEName;
     @FXML private TextField DEQueryName, DEQueryPhone, DEQueryAddress;
-    @FXML private TextArea DEQueryDesc;
+    @FXML private TextArea DEQueryDesc, DEAnnouncement;
     @FXML private TableView<Map.Entry<String, LocalTime[]>> DEOpeningHours = new TableView<>();
     @FXML private ListView<DirectoryEntry> DirectoryList = new ListView<>();
     @FXML private ImageView DirectoryEntryImage = new ImageView();
 
-
     public void loadDirectory(Event event) {
         DirectoryList.getItems().clear();
-        //TODO add reference to stackoverflow
         DirectoryList.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(DirectoryEntry item, boolean empty) {
@@ -204,22 +225,26 @@ public class Controller implements Initializable {
         try{
             List<DirectoryEntry> directories = Database.getAllDirectoryEntrys();
 
-            for (DirectoryEntry entry : directories)
-            {
+            for (DirectoryEntry entry : directories) {
                 DirectoryList.getItems().add(entry);
             }
-
             DEOpeningHours.getColumns().get(0).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getKey()));
             DEOpeningHours.getColumns().get(1).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0].equals(param.getValue().getValue()[1]) ? "CLOSED" : param.getValue().getValue()[0]));
             DEOpeningHours.getColumns().get(2).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0].equals(param.getValue().getValue()[1]) ? "CLOSED" : param.getValue().getValue()[1]));
         } catch (SQLException e)
         {
-            //TODO Handle SQL Exception
+            System.out.println("Error" + e.getMessage());
         }
     }
 
 
     /* Activity Page ----------------------------------------------------------*/
+
+    /**
+     * Initializes the Activity Tab with all of the actvities in the database and loads information on them
+     * based on which one is selected
+     * @author Darcey Gardiner
+     **/
 
     @FXML private ListView ActivityList = new ListView();
     @FXML private TextField ActivityQName, ActivityQAddress, phoneOrAddress;
@@ -231,7 +256,6 @@ public class Controller implements Initializable {
 
     public void loadActivities(Event event) {
         ActivityList.getItems().clear();
-        //TODO add reference to stackoverflow
         ActivityList.setCellFactory(param -> new ListCell<Activity>() {
             @Override
             protected void updateItem(Activity item, boolean empty) {
@@ -250,7 +274,7 @@ public class Controller implements Initializable {
             }
         } catch (SQLException e)
         {
-            //TODO Handle SQL Exception
+            System.out.println("Error" + e.getMessage());
         }
     }
 

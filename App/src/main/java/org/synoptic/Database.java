@@ -21,12 +21,19 @@ public class Database {
         Database.connectDatabase();
     }
 
-    // (DG) - Return the Database Connection
+    /**
+     * Return the Database Connection
+     * @author Darcey Gardiner
+     */
+
     public static Connection getDatabaseConnection() {
         return databaseConnection;
     }
 
-    // (DG) - Create a Database Connection. Returns true upon successful creation, terminates program upon failure.
+    /**
+     * Creates the database connection, will return true if successful and ends the program if it fails
+     * @author Darcey Gardiner
+     */
     private static void connectDatabase() {
 
         try {
