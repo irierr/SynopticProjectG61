@@ -11,10 +11,10 @@ public class SMSServiceTests {
             System.out.println("TEST FAILED - Format Times test!");
         else
             System.out.println("TEST PASSED - Format Times test!");
-        if (validateDayTest() == 1)
-            System.out.println("TEST FAILED - Validate Day test!");
-        else
-            System.out.println("TEST PASSED - Validate Day test!");
+//        if (validateDayTest() == 1)
+//            System.out.println("TEST FAILED - Validate Day test!");
+//        else
+//            System.out.println("TEST PASSED - Validate Day test!");
 
         System.out.println("---- TEST COMPLETE\n");
     }
@@ -32,14 +32,5 @@ public class SMSServiceTests {
             if (!(funcTimes.get(i) == testTimeList.get(i)))
                 return 1;
         return 0;
-    }
-
-    public static int validateDayTest() {
-        SMSServiceSimulator testSMSServiceSimulator = new SMSServiceSimulator("07904823541");
-
-        if (!testSMSServiceSimulator.validateDay("MONDAY"))
-            return 1;
-        else
-            return 0;
     }
 }

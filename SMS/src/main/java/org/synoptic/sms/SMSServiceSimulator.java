@@ -1,10 +1,10 @@
 package org.synoptic.sms;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+        import java.time.LocalTime;
+        import java.time.format.DateTimeFormatter;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Scanner;
 
 /**
  * Simulates an SMS Service for owners of businesses/ organisations to update opening times and announcements for display
@@ -34,7 +34,7 @@ public class SMSServiceSimulator
             input = in.nextLine();
             if(input.equalsIgnoreCase("start")) {
                 System.out.println("""
-                        Please input one the following:\s
+                        Please input one of the following:\s
                         opening times\s
                         announcement\s
                         """);
@@ -43,20 +43,23 @@ public class SMSServiceSimulator
                 boolean updatingTimes = true;
                 while(updatingTimes){
                     List<LocalTime> currOpenTimes = Database.getOpeningTimes(phoneNumber);
-                    System.out.println("Your current opening times are:\n " + currOpenTimes + "\n What day would you like to change the times for?");
-                    String day = in.nextLine();
-                    if(validateDay(day)){
-                        System.out.println("Enter your times for " + day);
-                        input = in.nextLine();
-                        List<LocalTime> newOpenTime = formatTimes(input);
-                        if(Database.updateOpeningTimes(phoneNumber, day.toLowerCase(), newOpenTime)){
-                            System.out.println("Successfully updated the opening times for " + day + " to " + input + ". If you would like to update another day's times send the name of the day otherwise send stop to stop updating times");
+                    System.out.println("Your current opening times are:\n " + timesToString(currOpenTimes) + "To change the opening times for a day send the number corresponding to the day (1 for Monday - 7 For Sunday). To stop editing opening times send stop");
+                    input = in.nextLine();
+                    if(input.equalsIgnoreCase("stop")){
+                        updatingTimes = false;
+                    }
+                    else {
+                        int day = Integer.parseInt(input);
+                        if(day > 0 && day < 8){
+                            System.out.println("Enter your times for " + day);
                             input = in.nextLine();
-                            if(input.equalsIgnoreCase("stop")){
-                                updatingTimes = false;
+                            List<LocalTime> newOpenTime = formatTimes(input);
+                            if(Database.updateOpeningTimes(phoneNumber, day, newOpenTime)){
+                                System.out.println("Successfully updated the opening times for " + day + " to " + input);
                             }
                         }
                     }
+
                 }
             }
             else if(input.equalsIgnoreCase("announcement")){
@@ -82,22 +85,26 @@ public class SMSServiceSimulator
             if(times[i].length() < 5){
                 times[i] = "0" + times[1];
             }
-//            openingTimes.set(i, LocalTime.parse(times[i], timeFormatter));
             openingTimes.add(LocalTime.parse(times[i], timeFormatter));
         }
         return openingTimes;
     }
 
     /**
-     * Checks if the passed string is a valid day of the week
-     * @param day String to check
-     * @return true if day is a day of the week and false if not
+     * Builds a String containing all opening times for each day.
+     * @param times List of opening times as LocalTimes
+     * @return A String that shows a list of all opening times on each day.
      * @author Irie Railton
      */
-    public boolean validateDay(String day){
-        day = day.toLowerCase();
-        return day.equals("monday") || day.equals("tuesday") || day.equals("wednesday") || day.equals("thursday") || day.equals("friday") || day.equals("saturday") || day.equals("sunday");
+    public String timesToString(List<LocalTime> times){
+        StringBuilder openingTimes = new StringBuilder();
+        String[] days = {"Monday: ", "Tuesday: ", "Wednesday: ", "Thursday: ", "Friday: ", "Saturday: ", "Sunday: "};
+        for (int i = 0; i < 14; i+=2) {
+            openingTimes.append(days[i / 2]).append(times.get(i).toString()).append(" - ").append(times.get(i + 1).toString()).append("\n");
+        }
+        return openingTimes.toString();
     }
+
 
     public static void main(String[] args) {
         String phoneNum = "0123456789";
