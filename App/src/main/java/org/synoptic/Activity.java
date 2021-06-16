@@ -6,6 +6,15 @@ package org.synoptic;
  * @author Harry Whitelam
  */
 public class Activity {
+    public Activity(String name, String address, String endAddress, String description, String phone, Type type) {
+        this.name = name;
+        this.address = address;
+        this.endAddress = endAddress;
+        this.description = description;
+        this.phoneNumber = phone;
+        this.type = type;
+    }
+
     /**
      * Enum to specify the type of activity
      *
