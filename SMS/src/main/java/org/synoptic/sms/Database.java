@@ -35,7 +35,7 @@ public class Database {
         try
         {
 
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("");  //TODO add sql here
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT open, close FROM OpeningTimes WHERE id =" + phoneNum + ";");  //TODO add sql here
             ResultSet resultSet = statement.executeQuery();
             List<LocalTime> openingTimes = new ArrayList<>();
 
@@ -53,7 +53,7 @@ public class Database {
         }
     }
 
-    public static boolean updateOpeningTimes(String phoneNum, String day, List<LocalTime> times){
+    public static boolean updateOpeningTimes(String phoneNum, int day, List<LocalTime> times){
         try
         {
             PreparedStatement statement = getDatabaseConnection().prepareStatement("");  //TODO add sql here
