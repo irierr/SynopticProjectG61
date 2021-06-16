@@ -9,8 +9,9 @@ html(lang='en')
   body
     header
       nav(id = "top" class="nav")
-        a(href='/' , class=[pageID === 'add' ? 'highlight' : '']) Add
-        a(href = '/update', class=[pageID === 'signup' ? 'highlight' : '']) Update
+        a(href='/' , class=[pageID === 'add' ? 'highlight' : '']) Add Business
+        a(href = '/update', class=[pageID === 'signup' ? 'highlight' : '']) Update Business
+        a(href = '/activity', class=[pageID === 'signup' ? 'highlight' : '']) Add Activity
     div(class=['greybox'])
       block content
 

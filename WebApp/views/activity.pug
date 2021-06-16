@@ -1,0 +1,28 @@
+extends layout
+
+block content
+        .container
+            p Add a Activity here, required information is marked with an asterisk(*)
+            form()
+                label(for='name') Name*:
+                input#name(type='text',placeholder='Name', name='name')
+
+                label(for='address') Start Address*:
+                input#address(type='text',placeholder='Start Address', name='address')
+
+                label(for='endAddress') End Address*:
+                input#endAddress(type='text',placeholder='End Address', name='endAddress')
+
+                label(for='phone') Phone Number*:
+                input#phone(type='number',placeholder='Phone', name='phone')
+
+                label(for='description') Description*:
+                textarea#description(placeholder='Write description here', name='description')
+
+                label(for='type') Type*:
+                   - const typeOptions = [{value: 'Walking Trail'}, {value: 'Attraction'}]
+                   select#type(name='type')
+                        each type in typeOptions
+                            option(value=(type.value)) #{type.value}
+
+                button.btn.btn-primary(type='submit') Add

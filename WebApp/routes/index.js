@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
   res.render('add', { title: 'Add' });
 });
 
+router.get('/activity', function(req, res, next) {
+  res.render('activity', {title: 'Activity'});
+});
+
 router.get('/update', function (req, res, next) {
   res.render('pre-update', {title: 'Update'});
 });
