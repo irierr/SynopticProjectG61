@@ -67,7 +67,7 @@ public class Database {
         return DirectoryEntrys;
     }
 
-    /*public static List<Activity> getAllActivities() throws SQLException{
+    public static List<Activity> getAllActivities() throws SQLException{
 
         PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT * FROM Activities;");
         ResultSet resultSet = statement.executeQuery();
@@ -75,10 +75,11 @@ public class Database {
         List<Activity> Activities = new ArrayList<>();
 
         while (resultSet.next()){
-            Activities.add(new Activity(Activity.Type.valueOf(resultSet.getString())))
+            Activities.add(new Activity(resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("endAddress"), resultSet.getString("description"), resultSet.getString("phone"), Activity.Type.valueOf(resultSet.getString("type"))));
         }
 
-    }*/
+        return Activities;
+    }
 
     /*
         CREATE TABLE DirectoryEntry (

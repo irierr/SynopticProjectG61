@@ -16,8 +16,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Button?>
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
   <stylesheets>
       <URL value="@stylesheet.css" />
@@ -28,15 +28,15 @@
               <ListView fx:id="DirectoryList" layoutX="7.0" layoutY="7.0" prefHeight="105.0" prefWidth="386.0" />
             <VBox layoutX="6.0" layoutY="113.0" prefHeight="599.0" prefWidth="389.0">
                <children>
-                  <VBox prefHeight="140.0" prefWidth="389.0">
+                  <VBox prefHeight="112.0" prefWidth="389.0">
                      <children>
                         <Label text="Announcements" />
-                        <TextArea prefHeight="105.0" prefWidth="389.0" />
+                        <TextArea prefHeight="90.0" prefWidth="389.0" />
                      </children>
                   </VBox>
                   <HBox prefHeight="27.0" prefWidth="389.0" spacing="5.0">
                      <children>
-                        <Label fx:id="DEName" text="Name:" />
+                        <Label text="Name:" />
                         <TextField fx:id="DEQueryName" editable="false" prefHeight="31.0" prefWidth="328.0">
                            <font>
                               <Font name="Century Gothic" size="16.0" />
@@ -46,14 +46,14 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="7.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="133.0" prefWidth="194.0">
                            <children>
-                              <Label fx:id="POIDescription1" text="Description" />
+                              <Label text="Description" />
                               <TextArea fx:id="DEQueryDesc" editable="false" prefHeight="108.0" prefWidth="196.0" wrapText="true">
                                  <font>
                                     <Font name="Century Gothic" size="16.0" />
@@ -61,7 +61,7 @@
                               </TextArea>
                            </children>
                         </VBox>
-                        <ImageView fx:id="POIImage1" fitHeight="133.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="DirectoryEntryImage" fitHeight="133.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@directoryPlaceholder.jpg" />
                            </image>
@@ -71,12 +71,12 @@
                         </ImageView>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="7.0" />
                      </VBox.margin>
                   </HBox>
                     <Label text="Opening Hours:">
                      <VBox.margin>
-                        <Insets bottom="5.0" top="10.0" />
+                        <Insets bottom="5.0" top="7.0" />
                      </VBox.margin></Label>
                   <TableView fx:id="POIOpeningHours" prefHeight="182.0" prefWidth="380.0">
                     <columns>
@@ -94,10 +94,10 @@
                            </font></TextField>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="7.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="29.0" prefWidth="299.0" spacing="5.0">
+                  <HBox prefHeight="20.0" prefWidth="389.0" spacing="5.0">
                      <children>
                           <Label text="Address:" />
                         <TextField fx:id="DEQueryAddress" prefHeight="31.0" prefWidth="314.0">
@@ -106,7 +106,7 @@
                            </font></TextField>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="7.0" />
                      </VBox.margin>
                   </HBox>
                </children>
@@ -114,14 +114,89 @@
           </children>
       </AnchorPane>
   </Tab>
-  <Tab text="Activities">
-      <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+  <Tab onSelectionChanged="#loadActivities" text="Activities">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="726.0" prefWidth="400.0">
               <children>
-                  <ListView fx:id="ActivityList" layoutX="12.0" layoutY="14.0" prefHeight="200.0" prefWidth="375.0" />
-                  <Label fx:id="ActivityDescription" layoutX="14.0" layoutY="229.0" text="Label" />
-                  <Button fx:id="ActivityMapButton" layoutX="321.0" layoutY="669.0" mnemonicParsing="false" text="Map" />
-                  <Button fx:id="ActivityDirectoryButton" layoutX="321.0" layoutY="628.0" mnemonicParsing="false" text="Directory" />
+                  <ListView fx:id="ActivityList" layoutX="13.0" layoutY="163.0" prefHeight="200.0" prefWidth="375.0" />
+               <VBox layoutX="10.0" layoutY="374.0" prefHeight="343.0" prefWidth="389.0">
+                  <children>
+                     <HBox prefHeight="26.0" prefWidth="389.0" spacing="5.0">
+                        <children>
+                           <Label text="Name:" />
+                           <TextField fx:id="ActivityQName" editable="false" prefHeight="31.0" prefWidth="319.0">
+                              <font>
+                                 <Font name="Century Gothic" size="16.0" />
+                              </font>
+                           </TextField>
+                        </children>
+                        <padding>
+                           <Insets top="10.0" />
+                        </padding>
+                        <VBox.margin>
+                           <Insets top="7.0" />
+                        </VBox.margin>
+                     </HBox>
+                     <HBox prefHeight="18.0" prefWidth="389.0" spacing="5.0">
+                        <children>
+                           <Label text="Address:" />
+                           <TextField fx:id="ActivityQAddress" prefHeight="31.0" prefWidth="305.0" />
+                        </children>
+                        <padding>
+                           <Insets top="7.0" />
+                        </padding>
+                     </HBox>
+                     <HBox prefHeight="43.0" prefWidth="389.0" spacing="5.0">
+                        <children>
+                           <Label fx:id="attractionType" prefHeight="20.0" prefWidth="105.0" text="End Address:" />
+                           <TextField fx:id="phoneOrAddress" prefHeight="31.0" prefWidth="265.0" />
+                        </children>
+                        <padding>
+                           <Insets top="10.0" />
+                        </padding>
+                     </HBox>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox prefHeight="133.0" prefWidth="194.0">
+                              <children>
+                                 <Label text="Description" />
+                                 <TextArea fx:id="ActivityQDesc" editable="false" prefHeight="108.0" prefWidth="196.0" wrapText="true">
+                                    <font>
+                                       <Font name="Century Gothic" size="16.0" />
+                                    </font>
+                                 </TextArea>
+                              </children>
+                           </VBox>
+                           <ImageView fx:id="POIImage11" fitHeight="133.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@activityPlaceholder.jpg" />
+                              </image>
+                              <HBox.margin>
+                                 <Insets left="30.0" />
+                              </HBox.margin>
+                           </ImageView>
+                        </children>
+                     </HBox>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="If you have any suggestions on how to improve this app, please contact Ecoswell during your stay and they will take your suggestions into account. Thank you for choosing to stay in Lobitos/Piedritas, we hope you enjoy our wonderful towns!" textAlignment="CENTER" wrappingWidth="381.4735412597656">
+                        <font>
+                           <Font name="Century Gothic" size="12.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets top="10.0" />
+                        </VBox.margin>
+                     </Text>
+                  </children>
+               </VBox>
+               <Text layoutX="9.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Things to do in Lobitos &amp; Piedritas" underline="true">
+                  <font>
+                     <Font name="Century Gothic" size="24.0" />
+                  </font>
+               </Text>
+               <Text layoutX="12.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Here you will find all of the wonderful things to do in Lobitos and Piedritas. From Surf schools to walking trails, there is plenty to keep you entertained during your stay! Make the most of your time in town and support local businesses along the way. We hope you enjoy your stay!" textAlignment="CENTER" wrappingWidth="374.51611328125">
+                  <font>
+                     <Font name="Century Gothic" size="13.0" />
+                  </font>
+               </Text>
               </children>
           </AnchorPane>
       </AnchorPane>
