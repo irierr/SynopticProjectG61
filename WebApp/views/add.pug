@@ -2,7 +2,7 @@ extends layout
 
 block content
         .container
-            p Sign up to our mailing list so you can be kept in the loop with any future updates on our progress.
+            p Add a Shop/Restaurant/Attraction/Walking Trail here
             p required information is marked with an asterisk(*)
             form(action='/signup', method='post', onsubmit='return validateSignup()')
                 label(for='name') Name*:
@@ -18,7 +18,7 @@ block content
                 input#address(type='text',placeholder='Address', name='address')
 
                 #ifYes(style='display: none;')
-                    label(for='endAddress') End Address:
+                    label(for='endAddress') End Address*:
                     input#endAddress(type='text',placeholder='End Address', name='endAddress')
 
                 label(for='phone') Phone Number*:
@@ -34,4 +34,4 @@ block content
                 textarea#description(placeholder='Write description here', name='description')
 
 
-                button.btn.btn-primary(type='submit') Sign up
+                button.btn.btn-primary(type='submit') Add Business

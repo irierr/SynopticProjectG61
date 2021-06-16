@@ -2,19 +2,36 @@ extends layout
 
 block content
     .container
-        p Sign sndbajwEFup to our mailing list so you can be kept in the loop with any future updates on our progress.
+        p Update details for any Shop/Restaurant/Attraction/Walking Trail here
         p required information is marked with an asterisk(*)
         form(action='/signup', method='post', onsubmit='return validateSignup()')
-            label(for='firstname') First Name*:
-            input#firstname(type='text',placeholder='First Name', name='firstname')
+            label(for='name') Name*:
+                input#name(type='text',placeholder='Name', name='name')
 
-            label(for='lastname') Last Name*:
-            input#lastname(type='text',placeholder='Last Name', name='lastname')
+                label(for='type') Type*:
+                    - const typeOptions = [{value: 'Shop'} , {value: 'Restaurant'} , {value: 'Attraction'} , {value: 'Walking Trail'}]
+                    select#type(name='type' onchange="walkingTrailCheck()")
+                        each type in typeOptions
+                            option(value=(type.value)) #{type.value}
 
-            label(for='email') Email*:
-            input#email(type='email',placeholder='name@example.com', name='email')
+                label(for='address') Address*:
+                input#address(type='text',placeholder='Address', name='address')
 
-            label(for='comment') Comments:
-            textarea#comment(placeholder='Write any comments here', name='comment')
+                #ifYes(style='display: none;')
+                    label(for='endAddress') End Address*:
+                    input#endAddress(type='text',placeholder='End Address', name='endAddress')
 
-            button.btn.btn-primary(type='submit') Sign up
+                label(for='phone') Phone Number*:
+                input#phone(type='number',placeholder='Phone', name='phone')
+
+                label(for='openingTime') Opening Time*:
+                input#openingTime(type='number' ,placeholder='Opening Time', name='openingTime')
+
+                label(for='closingTime') Closing Time*:
+                input#closingTime(type='number' ,placeholder='Closing Time', name='closingTime')
+
+                label(for='description') Description*:
+                textarea#description(placeholder='Write description here', name='description')
+
+
+                button.btn.btn-primary(type='submit') Update Business
