@@ -123,28 +123,14 @@ public class DirectoryEntry {
     public String printOpeningHours() {
         StringBuilder hoursString = new StringBuilder();
         for (int i : this.openingHours.keySet()) {
-            switch(i) {
-                case(1):
-                    hoursString.append("Monday: ");
-                    break;
-                case(2):
-                    hoursString.append("Tuesday: ");
-                    break;
-                case(3):
-                    hoursString.append("Wednesday: ");
-                    break;
-                case(4):
-                    hoursString.append("Thursday: ");
-                    break;
-                case(5):
-                    hoursString.append("Friday: ");
-                    break;
-                case(6):
-                    hoursString.append("Saturday: ");
-                    break;
-                case(7):
-                    hoursString.append("Sunday: ");
-                    break;
+            switch (i) {
+                case (1) -> hoursString.append("Monday: ");
+                case (2) -> hoursString.append("Tuesday: ");
+                case (3) -> hoursString.append("Wednesday: ");
+                case (4) -> hoursString.append("Thursday: ");
+                case (5) -> hoursString.append("Friday: ");
+                case (6) -> hoursString.append("Saturday: ");
+                case (7) -> hoursString.append("Sunday: ");
             }
             LocalTime[] hours = openingHours.get(i);
             hoursString.append(hours[0]).append(" - ").append(hours[1]).append("\n");
