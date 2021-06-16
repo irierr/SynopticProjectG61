@@ -1,0 +1,63 @@
+extends layout
+
+block content
+        .container
+            p Add a Shop/Restaurant/Attraction/Walking Trail here
+            p required information is marked with an asterisk(*)
+            form(action='/', method='post')
+                label(for='name') Name*:
+                input#name(type='text',placeholder='Name', name='name')
+
+                label(for='address') Address*:
+                input#address(type='text',placeholder='Address', name='address')
+
+                label(for='phone') Phone Number*:
+                input#phone(type='number',placeholder='Phone', name='phone')
+
+                label(for='mondayOpeningTime') Monday Opening Time*:
+                input#mondayOpeningTime(type='number' ,placeholder='Monday Opening Time', name='mondayOpeningTime')
+
+                label(for='mondayClosingTime') Monday Closing Time*:
+                input#mondayClosingTime(type='number' ,placeholder='Monday Closing Time', name='mondayClosingTime')
+
+                label(for='tuesdayOpeningTime') Tuesday Opening Time*:
+                input#tuesdayOpeningTime(type='number' ,placeholder='Tuesday Opening Time', name='tuesdayOpeningTime')
+
+                label(for='tuesdayClosingTime') Tuesday Closing Time*:
+                input#tuesdayClosingTime(type='number' ,placeholder='Tuesday Closing Time', name='tuesdayClosingTime')
+
+                label(for='wednesdayOpeningTime') Wednesday Opening Time*:
+                input#wednesdayOpeningTime(type='number' ,placeholder='Wednesday Opening Time', name='wednesdayOpeningTime')
+
+                label(for='wednesdayClosingTime') Wednesday Closing Time*:
+                input#wednesdayClosingTime(type='number' ,placeholder='Wednesday Closing Time', name='wednesdayClosingTime')
+
+                label(for='thursdayOpeningTime') Thursday Opening Time*:
+                input#thursdayOpeningTime(type='number' ,placeholder='Thursday Opening Time', name='thursdayOpeningTime')
+
+                label(for='thursdayClosingTime') Thursday Closing Time*:
+                input#thursdayClosingTime(type='number' ,placeholder='Thursday Closing Time', name='thursdayClosingTime')
+
+                label(for='fridayOpeningTime') Friday Opening Time*:
+                input#fridayOpeningTime(type='number' ,placeholder='Friday Opening Time', name='fridayOpeningTime')
+
+                label(for='fridayClosingTime') Friday Closing Time*:
+                input#fridayClosingTime(type='number' ,placeholder='Friday Closing Time', name='fridayClosingTime')
+
+                label(for='saturdayOpeningTime') Saturday Opening Time*:
+                input#saturdayOpeningTime(type='number' ,placeholder='Saturday Opening Time', name='saturdayOpeningTime')
+
+                label(for='saturdayClosingTime') Saturday Closing Time*:
+                input#saturdayClosingTime(type='number' ,placeholder='Saturday Closing Time', name='saturdayClosingTime')
+
+                label(for='sundayOpeningTime') Sunday Opening Time*:
+                input#sundayOpeningTime(type='number' ,placeholder='Sunday Opening Time', name='sundayOpeningTime')
+
+                label(for='sundayClosingTime') Sunday Closing Time*:
+                input#sundayClosingTime(type='number' ,placeholder='Sunday Closing Time', name='sundayClosingTime')
+
+                label(for='description') Description*:
+                textarea#description(placeholder='Write description here', name='description')
+
+
+                button.btn.btn-primary(type='submit') Add

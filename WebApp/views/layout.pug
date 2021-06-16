@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/scripts/script.js')
+    meta(name="msapplication-TileColor", content="#ffffff")
+    meta(name="theme-color", content="#ffffff")
+  body
+    header
+      nav(id = "top" class="nav")
+        a(href='/' , class=[pageID === 'add' ? 'highlight' : '']) Add
+        a(href = '/update', class=[pageID === 'signup' ? 'highlight' : '']) Update
+    div(class=['greybox'])
+      block content
+
+
+
+

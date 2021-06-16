@@ -1,0 +1,16 @@
+.tab-pane {
+    -fx-tab-min-width:78px;
+    -fx-tab-max-width:78px;
+    -fx-tab-min-height:90px;
+    -fx-tab-max-height:90px;
+}
+
+.tab {
+    -fx-font-family: Arial;
+    -fx-font-size: 18;
+    -fx-background-color:royalblue;
+}
+
+.tab:selected {
+    -fx-background-color:blue ;
+}
