@@ -1,5 +1,10 @@
 package org.synoptic;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -10,13 +15,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalTime;
+import java.util.*;
 
 public class controller implements Initializable {
 
@@ -29,14 +39,79 @@ public class controller implements Initializable {
 
         //listens for an input in the shops list sets selection to the number in the list that's been selected
         //initialising ShopList List
-        DirectoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        DirectoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DirectoryEntry>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
+            public void changed(ObservableValue<? extends DirectoryEntry> observable, DirectoryEntry oldValue, DirectoryEntry newValue) {
                 int selection = DirectoryList.getSelectionModel().getSelectedIndex();
                 if (selection != -1)
                 {
-                    System.out.println("Updated selected goal to: " + selection);
+                    System.out.println("Updated selected Directory entry to: " + selection);
+                    DirectoryEntry entry = DirectoryList.getItems().get(selection);
+
+                    if (entry != null)
+                    {
+                        DEQueryName.setText(entry.getName());
+                        DEQueryDesc.setText(entry.getDescription());
+                        DEQueryPhone.setText(entry.getPhoneNumber());
+                        DEQueryAddress.setText(entry.getAddress());
+                        List<Map.Entry<String, LocalTime[]>> hours = new ArrayList<>();
+
+                        for (int i : entry.getOpeningHours().keySet())
+                        {
+                            hours.add(new AbstractMap.SimpleEntry(entry.dayNumberToString(i), entry.getOpeningHours().get(i)));
+                        }
+
+                        DEOpeningHours.setItems(FXCollections.observableArrayList(hours));
+                    }
+                    else
+                    {
+                        DEQueryName.setText(null);
+                        DEQueryDesc.setText(null);
+                        DEQueryPhone.setText(null);
+                        DEQueryAddress.setText(null);
+                        DEOpeningHours.getItems().clear();
+                    }
+
+                }
+            }
+        });
+
+        ActivityList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
+            @Override
+            public void changed(ObservableValue<? extends Activity> observable, Activity oldValue, Activity newValue) {
+                int selection = ActivityList.getSelectionModel().getSelectedIndex();
+                if (selection != -1)
+                {
+                    System.out.println("Updated selected Activity entry to: " + selection);
+                    Activity activity = (Activity) ActivityList.getItems().get(selection);
+
+                    if (activity != null)
+                    {
+                        ActivityQName.setText(activity.getName());
+                        ActivityQAddress.setText(activity.getAddress());
+                        ActivityQDesc.setText(activity.getDescription());
+
+                        switch (activity.getType()){
+                            case ATTRACTION -> {
+                                attractionType.setText("Phone:");
+                                phoneOrAddress.setText(activity.getPhoneNumber());
+                                ActivityPlaceholder.setImage(waterImage);
+                            }
+                            case WALKING_TRAIL -> {
+                                attractionType.setText("End Address:");
+                                phoneOrAddress.setText(activity.getEndAddress());
+                                ActivityPlaceholder.setImage(activityImage);
+                            }
+                            default -> throw new IllegalStateException("Unexpected value: " + activity.getType());
+                        }
+                    }
+                    else
+                    {
+                        ActivityQName.setText(null);
+                        ActivityQAddress.setText(null);
+                        ActivityQDesc.setText(null);
+                    }
+
                 }
             }
         });
@@ -115,18 +190,83 @@ public class controller implements Initializable {
 
     /* Directory Page ------------------------------------------------------------------------------------------------*/
 
-    @FXML private Label ShopName = new Label();
-    @FXML private Label Description = new Label();
-    @FXML private Label OpeningHours = new Label();
-    @FXML private ListView DirectoryList = new ListView();
-    @FXML private ImageView POIImage = new ImageView();
+    @FXML private Label DEName;
+    @FXML private TextField DEQueryName, DEQueryPhone, DEQueryAddress;
+    @FXML private TextArea DEQueryDesc;
+    @FXML private TableView<Map.Entry<String, LocalTime[]>> DEOpeningHours = new TableView();
+    @FXML private ListView<DirectoryEntry> DirectoryList = new ListView();
+    @FXML private ImageView DirectoryEntryImage = new ImageView();
 
-    /* Activity Page -------------------------------------------------------------------------------------------------*/
+
+    public void loadDirectory(Event event) {
+        DirectoryList.getItems().clear();
+        //TODO add reference to stackoverflow
+        DirectoryList.setCellFactory(param -> new ListCell<DirectoryEntry>() {
+            @Override
+            protected void updateItem(DirectoryEntry item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.getName() == null) {
+                    setText(null);
+                }
+                else {
+                    setText(item.getName());
+                }
+            }
+        });
+        try{
+            List<DirectoryEntry> directories = Database.getAllDirectoryEntrys();
+
+            for (DirectoryEntry entry : directories)
+            {
+                DirectoryList.getItems().add(entry);
+            }
+
+            DEOpeningHours.getColumns().get(0).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getKey()));
+            DEOpeningHours.getColumns().get(1).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0].equals(param.getValue().getValue()[1]) ? "CLOSED" : param.getValue().getValue()[0]));
+            DEOpeningHours.getColumns().get(2).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0].equals(param.getValue().getValue()[1]) ? "CLOSED" : param.getValue().getValue()[1]));
+        } catch (SQLException e)
+        {
+            //TODO Handle SQL Exception
+        }
+    }
+
+
+    /* Activity Page ----------------------------------------------------------*/
 
     @FXML private ListView ActivityList = new ListView();
-    @FXML private Label ActivityDescription = new Label();
+    @FXML private TextField ActivityQName, ActivityQAddress, phoneOrAddress;
+    @FXML private TextArea ActivityQDesc;
+    @FXML private Label attractionType = new Label();
     @FXML private Button ActivityMapButton = new Button();
     @FXML private Button ActivityDirectoryButton = new Button();
+    @FXML private ImageView ActivityPlaceholder = new ImageView();
+    @FXML private Image waterImage = new Image("waterPlaceholder.jpg");
+    @FXML private Image activityImage = new Image("activityPlaceholder.jpg");
+
+    public void loadActivities(Event event) {
+        ActivityList.getItems().clear();
+        //TODO add reference to stackoverflow
+        ActivityList.setCellFactory(param -> new ListCell<Activity>() {
+            @Override
+            protected void updateItem(Activity item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.getName() == null) {
+                    setText(null);
+                }
+                else {
+                    setText(item.getName());
+                }
+            }
+        });
+        try{
+            for (Activity activity : Database.getAllActivities()) {
+                ActivityList.getItems().add(activity);
+            }
+        } catch (SQLException e)
+        {
+            //TODO Handle SQL Exception
+        }
+    }
 
     /* Map Page ------------------------------------------------------------------------------------------------------*/
 
