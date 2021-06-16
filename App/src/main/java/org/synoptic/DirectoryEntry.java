@@ -85,6 +85,13 @@ public class DirectoryEntry {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Method to convert an integer which represents a day into a string
+     *
+     * @param dayNumber an integer that indicates a specific day (1 -> Monday etc.)
+     * @return String of day
+     * @author Brandon Gous
+     */
     public String dayNumberToString(int dayNumber)
     {
         switch (dayNumber)
