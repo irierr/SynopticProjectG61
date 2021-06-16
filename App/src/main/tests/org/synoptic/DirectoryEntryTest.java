@@ -7,7 +7,19 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test harness for DirectoryEntry class
+ *
+ * @see DirectoryEntry
+ * @author Harry Whitelam
+ */
 class DirectoryEntryTest {
+    /**
+     * Getters, should return the value requested
+     * Available for name, address, description, announcement, opening hours and phone number
+     *
+     * @author Harry Whitelam
+     */
     @Test
     void getName() {
         HashMap<Integer, LocalTime[]> testMap = new HashMap<>();
@@ -62,6 +74,12 @@ class DirectoryEntryTest {
         assertEquals("07412107823", testDE.getPhoneNumber());
     }
 
+    /**
+     * Setters, should replace the value with the given parameter
+     * Available for name, address, description, announcement, opening hours and phone number
+     *
+     * @author Harry Whitelam
+     */
     @Test
     void setName() {
         HashMap<Integer, LocalTime[]> testMap = new HashMap<>();
@@ -123,6 +141,11 @@ class DirectoryEntryTest {
         assertEquals("1234", testDE.getPhoneNumber());
     }
 
+    /**
+     * Should return a string of each day's opening hours in a legible string
+     *
+     * @author Harry Whitelam
+     */
     @Test
     void printOpeningHours() {
         HashMap<Integer, LocalTime[]> testMap = new HashMap<>();

@@ -4,8 +4,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test harness for Activity class
+ *
+ * @see Activity
+ * @author Harry Whitelam
+ */
 class ActivityTest {
 
+    /**
+     * Getters, should return the value requested
+     * Available for name, address, end address, description, type and phone number
+     *
+     * @author Harry Whitelam
+     */
     @Test
     void getName() {
         Activity testAttraction = new Activity(Activity.Type.ATTRACTION, "testName", "testAddress", "testDesc", "07412107823");
@@ -42,6 +54,12 @@ class ActivityTest {
         assertEquals("07412107823", testAttraction.getPhoneNumber());
     }
 
+    /**
+     * Setters, should replace the value with the given parameter
+     * Available for name, address, end address, description, type and phone number
+     *
+     * @author Harry Whitelam
+     */
     @Test
     void setName() {
         Activity testAttraction = new Activity(Activity.Type.ATTRACTION, "testName", "testAddress", "testDesc", "07412107823");
