@@ -37,6 +37,7 @@
                 <version>0.0.6</version>
                 <configuration>
                     <mainClass>org.synoptic.Main</mainClass>
+                    <executable>C:\Users\gfs19eku\.jdks\adopt-openjdk-16.0.1\bin\java</executable>
                 </configuration>
             </plugin>
         </plugins>
