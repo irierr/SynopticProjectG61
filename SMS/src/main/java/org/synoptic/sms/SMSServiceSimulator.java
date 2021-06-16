@@ -88,7 +88,6 @@ public class SMSServiceSimulator
         List<LocalTime> openingTimes = new ArrayList<>();
         input = input.replace(" ", "");
         String[] times = input.split("-");
-        System.out.println(Arrays.toString(times));
         for (int i = 0; i < 2; i++) {
             if(times[i].length() < 5){
                 System.out.println("here");

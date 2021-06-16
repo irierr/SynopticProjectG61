@@ -92,8 +92,9 @@ public class Database {
             }
             else{
                 statement = getDatabaseConnection().prepareStatement("UPDATE OpeningTimes SET open = ?, close = ? WHERE id = ? AND day = ?;");
-                statement.setString(1, "'" + times.get(0).toString() + "'");
-                statement.setString(2, "'" + times.get(1).toString() + "'");
+                System.out.println(times.get(0).toString().length());
+                statement.setString(1, times.get(0).toString());
+                statement.setString(2, times.get(1).toString());
                 statement.setString(3, phoneNum);
                 statement.setInt(4, day);
 
