@@ -1,62 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+<?import javafx.scene.control.Button?>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
   <stylesheets>
       <URL value="@stylesheet.css" />
   </stylesheets>
-  <Tab text="Directory">
+  <Tab onSelectionChanged="#loadDirectory" text="Directory">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
-              <ListView fx:id="DirectoryList" layoutX="7.0" layoutY="7.0" prefHeight="200.0" prefWidth="386.0" />
-            <VBox layoutX="6.0" layoutY="210.0" prefHeight="502.0" prefWidth="389.0">
+              <ListView fx:id="DirectoryList" layoutX="7.0" layoutY="7.0" prefHeight="105.0" prefWidth="386.0" />
+            <VBox layoutX="6.0" layoutY="113.0" prefHeight="599.0" prefWidth="389.0">
                <children>
-                    <Label fx:id="POIName" text="shop name" />
-                    <GridPane prefHeight="135.0" prefWidth="386.0">
-                        <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        </rowConstraints>
-                        <children>
-                            <Label fx:id="POIDescription" text="shop description" />
-                            <ImageView fx:id="POIImage" fitHeight="78.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                        </children>
-                    </GridPane>
-                    <Label text="Opening Hours:" />
-                  <TableView fx:id="POIOpeningHours" prefHeight="182.0" prefWidth="389.0">
+                  <VBox prefHeight="140.0" prefWidth="389.0">
+                     <children>
+                        <Label text="Announcements" />
+                        <TextArea prefHeight="105.0" prefWidth="389.0" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="27.0" prefWidth="389.0" spacing="5.0">
+                     <children>
+                        <Label fx:id="DEName" text="Name:" />
+                        <TextField fx:id="DEQueryName" editable="false" prefHeight="31.0" prefWidth="328.0">
+                           <font>
+                              <Font name="Century Gothic" size="16.0" />
+                           </font></TextField>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="133.0" prefWidth="194.0">
+                           <children>
+                              <Label fx:id="POIDescription1" text="Description" />
+                              <TextArea fx:id="DEQueryDesc" editable="false" prefHeight="108.0" prefWidth="196.0" wrapText="true">
+                                 <font>
+                                    <Font name="Century Gothic" size="16.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                        <ImageView fx:id="POIImage1" fitHeight="133.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@directoryPlaceholder.jpg" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                    <Label text="Opening Hours:">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="10.0" />
+                     </VBox.margin></Label>
+                  <TableView fx:id="POIOpeningHours" prefHeight="182.0" prefWidth="380.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Day" />
-                      <TableColumn prefWidth="75.0" text="Hours" />
+                      <TableColumn prefWidth="128.0" text="Day" />
+                      <TableColumn prefWidth="130.0" text="Opening Time" />
+                        <TableColumn prefWidth="130.0" text="Closing Time" />
                     </columns>
                   </TableView>
-                  <HBox prefHeight="26.0" prefWidth="305.0">
+                  <HBox prefHeight="26.0" prefWidth="305.0" spacing="5.0">
                      <children>
                         <Label text="Phone Number:" />
-                        <Label fx:id="POIPhoneNumber" text="Label" />
+                        <TextField fx:id="DEQueryPhone" editable="false" prefHeight="31.0" prefWidth="260.0">
+                           <font>
+                              <Font name="Century Gothic" size="16.0" />
+                           </font></TextField>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="29.0" prefWidth="299.0">
+                  <HBox prefHeight="29.0" prefWidth="299.0" spacing="5.0">
                      <children>
                           <Label text="Address:" />
-                        <Label fx:id="POIAddress" text="Label" />
+                        <TextField fx:id="DEQueryAddress" prefHeight="31.0" prefWidth="314.0">
+                           <font>
+                              <Font name="Century Gothic" size="16.0" />
+                           </font></TextField>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
@@ -64,7 +115,16 @@
       </AnchorPane>
   </Tab>
   <Tab text="Activities">
-      <fx:include source="activity.fxml" />
+      <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
+              <children>
+                  <ListView fx:id="ActivityList" layoutX="12.0" layoutY="14.0" prefHeight="200.0" prefWidth="375.0" />
+                  <Label fx:id="ActivityDescription" layoutX="14.0" layoutY="229.0" text="Label" />
+                  <Button fx:id="ActivityMapButton" layoutX="321.0" layoutY="669.0" mnemonicParsing="false" text="Map" />
+                  <Button fx:id="ActivityDirectoryButton" layoutX="321.0" layoutY="628.0" mnemonicParsing="false" text="Directory" />
+              </children>
+          </AnchorPane>
+      </AnchorPane>
   </Tab>
   <Tab text="Map">
         <fx:include source="map.fxml" />
