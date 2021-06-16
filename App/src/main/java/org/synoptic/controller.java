@@ -218,8 +218,8 @@ public class controller implements Initializable {
             }
 
             DEOpeningHours.getColumns().get(0).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getKey()));
-            DEOpeningHours.getColumns().get(1).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0]));
-            DEOpeningHours.getColumns().get(2).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[1]));
+            DEOpeningHours.getColumns().get(1).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0].equals(param.getValue().getValue()[1]) ? "CLOSED" : param.getValue().getValue()[0]));
+            DEOpeningHours.getColumns().get(2).setCellValueFactory(param -> new ReadOnlyObjectWrapper(param.getValue().getValue()[0].equals(param.getValue().getValue()[1]) ? "CLOSED" : param.getValue().getValue()[1]));
         } catch (SQLException e)
         {
             //TODO Handle SQL Exception
