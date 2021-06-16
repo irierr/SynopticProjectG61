@@ -113,7 +113,6 @@ public class controller implements Initializable {
 
     }
 
-
     /* Directory Page ------------------------------------------------------------------------------------------------*/
 
     @FXML private Label ShopName = new Label();
@@ -122,24 +121,12 @@ public class controller implements Initializable {
     @FXML private ListView DirectoryList = new ListView();
     @FXML private ImageView POIImage = new ImageView();
 
-
     /* Activity Page -------------------------------------------------------------------------------------------------*/
 
     @FXML private ListView ActivityList = new ListView();
     @FXML private Label ActivityDescription = new Label();
     @FXML private Button ActivityMapButton = new Button();
     @FXML private Button ActivityDirectoryButton = new Button();
-
-
-    public void ActivityMapButton() throws IOException
-    {
-
-    }
-
-    public void ActivityDirectoryButton() throws IOException
-    {
-
-    }
 
     /* Map Page ------------------------------------------------------------------------------------------------------*/
 
