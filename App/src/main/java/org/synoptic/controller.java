@@ -27,7 +27,7 @@ public class controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initMap();
 
-        //listens for an iput in the shops list sets selection to the number in the list that's been selected
+        //listens for an input in the shops list sets selection to the number in the list that's been selected
         //initialising ShopList List
         DirectoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
