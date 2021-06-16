@@ -1,14 +1,11 @@
 package org.synoptic;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.event.Event;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,18 +14,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.*;
 
-public class controller implements Initializable {
+public class Controller implements Initializable {
 
     public static final int DEFAULT_WIDTH = 400;
     public static final int DEFAULT_HEIGHT = 800;
@@ -39,80 +34,74 @@ public class controller implements Initializable {
 
         //listens for an input in the shops list sets selection to the number in the list that's been selected
         //initialising ShopList List
-        DirectoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DirectoryEntry>() {
-            @Override
-            public void changed(ObservableValue<? extends DirectoryEntry> observable, DirectoryEntry oldValue, DirectoryEntry newValue) {
-                int selection = DirectoryList.getSelectionModel().getSelectedIndex();
-                if (selection != -1)
+        DirectoryList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            int selection = DirectoryList.getSelectionModel().getSelectedIndex();
+            if (selection != -1)
+            {
+                System.out.println("Updated selected Directory entry to: " + selection);
+                DirectoryEntry entry = DirectoryList.getItems().get(selection);
+
+                if (entry != null)
                 {
-                    System.out.println("Updated selected Directory entry to: " + selection);
-                    DirectoryEntry entry = DirectoryList.getItems().get(selection);
+                    DEQueryName.setText(entry.getName());
+                    DEQueryDesc.setText(entry.getDescription());
+                    DEQueryPhone.setText(entry.getPhoneNumber());
+                    DEQueryAddress.setText(entry.getAddress());
+                    List<Map.Entry<String, LocalTime[]>> hours = new ArrayList<>();
 
-                    if (entry != null)
+                    for (int i : entry.getOpeningHours().keySet())
                     {
-                        DEQueryName.setText(entry.getName());
-                        DEQueryDesc.setText(entry.getDescription());
-                        DEQueryPhone.setText(entry.getPhoneNumber());
-                        DEQueryAddress.setText(entry.getAddress());
-                        List<Map.Entry<String, LocalTime[]>> hours = new ArrayList<>();
-
-                        for (int i : entry.getOpeningHours().keySet())
-                        {
-                            hours.add(new AbstractMap.SimpleEntry(entry.dayNumberToString(i), entry.getOpeningHours().get(i)));
-                        }
-
-                        DEOpeningHours.setItems(FXCollections.observableArrayList(hours));
-                    }
-                    else
-                    {
-                        DEQueryName.setText(null);
-                        DEQueryDesc.setText(null);
-                        DEQueryPhone.setText(null);
-                        DEQueryAddress.setText(null);
-                        DEOpeningHours.getItems().clear();
+                        hours.add(new AbstractMap.SimpleEntry(entry.dayNumberToString(i), entry.getOpeningHours().get(i)));
                     }
 
+                    DEOpeningHours.setItems(FXCollections.observableArrayList(hours));
                 }
+                else
+                {
+                    DEQueryName.setText(null);
+                    DEQueryDesc.setText(null);
+                    DEQueryPhone.setText(null);
+                    DEQueryAddress.setText(null);
+                    DEOpeningHours.getItems().clear();
+                }
+
             }
         });
 
-        ActivityList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
-            @Override
-            public void changed(ObservableValue<? extends Activity> observable, Activity oldValue, Activity newValue) {
-                int selection = ActivityList.getSelectionModel().getSelectedIndex();
-                if (selection != -1)
+        ActivityList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Activity>) (observable, oldValue, newValue) -> {
+            int selection = ActivityList.getSelectionModel().getSelectedIndex();
+            if (selection != -1)
+            {
+                System.out.println("Updated selected Activity entry to: " + selection);
+                Activity activity = (Activity) ActivityList.getItems().get(selection);
+
+                if (activity != null)
                 {
-                    System.out.println("Updated selected Activity entry to: " + selection);
-                    Activity activity = (Activity) ActivityList.getItems().get(selection);
+                    ActivityQName.setText(activity.getName());
+                    ActivityQAddress.setText(activity.getAddress());
+                    ActivityQDesc.setText(activity.getDescription());
 
-                    if (activity != null)
-                    {
-                        ActivityQName.setText(activity.getName());
-                        ActivityQAddress.setText(activity.getAddress());
-                        ActivityQDesc.setText(activity.getDescription());
-
-                        switch (activity.getType()){
-                            case ATTRACTION -> {
-                                attractionType.setText("Phone:");
-                                phoneOrAddress.setText(activity.getPhoneNumber());
-                                ActivityPlaceholder.setImage(waterImage);
-                            }
-                            case WALKING_TRAIL -> {
-                                attractionType.setText("End Address:");
-                                phoneOrAddress.setText(activity.getEndAddress());
-                                ActivityPlaceholder.setImage(activityImage);
-                            }
-                            default -> throw new IllegalStateException("Unexpected value: " + activity.getType());
+                    switch (activity.getType()){
+                        case ATTRACTION -> {
+                            attractionType.setText("Phone:");
+                            phoneOrAddress.setText(activity.getPhoneNumber());
+                            ActivityPlaceholder.setImage(waterImage);
                         }
+                        case WALKING_TRAIL -> {
+                            attractionType.setText("End Address:");
+                            phoneOrAddress.setText(activity.getEndAddress());
+                            ActivityPlaceholder.setImage(activityImage);
+                        }
+                        default -> throw new IllegalStateException("Unexpected value: " + activity.getType());
                     }
-                    else
-                    {
-                        ActivityQName.setText(null);
-                        ActivityQAddress.setText(null);
-                        ActivityQDesc.setText(null);
-                    }
-
                 }
+                else
+                {
+                    ActivityQName.setText(null);
+                    ActivityQAddress.setText(null);
+                    ActivityQDesc.setText(null);
+                }
+
             }
         });
     }

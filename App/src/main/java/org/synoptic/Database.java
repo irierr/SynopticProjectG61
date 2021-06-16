@@ -1,11 +1,11 @@
 package org.synoptic;
+
 import java.sql.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Database {
 
@@ -79,7 +79,7 @@ public class Database {
     public static List<LocalTime> getOpeningTimes(String phoneNum){
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT open, close FROM OpeningTimes WHERE id = ? ORDER BY day ASC;");
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT open, close FROM OpeningTimes WHERE id = ? ORDER BY day;");
             statement.setString(1, phoneNum);
             ResultSet resultSet = statement.executeQuery();
 
