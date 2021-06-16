@@ -1,0 +1,12 @@
+extends layout
+
+block content
+        .container
+            p Please input the phone number assoicated with the directory you
+            p wish to update.
+            form(action='/update', method='post')
+
+                label(for='phone') Phone Number*:
+                input#phone(type='number',placeholder='Phone', name='phone')
+
+                button.btn.btn-primary(type='submit') Start Update
