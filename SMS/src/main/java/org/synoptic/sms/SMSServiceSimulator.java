@@ -1,10 +1,10 @@
 package org.synoptic.sms;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+        import java.time.LocalTime;
+        import java.time.format.DateTimeFormatter;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Scanner;
 
 /**
  * Simulates an SMS Service for owners of businesses/ organisations to update opening times and announcements for display
@@ -16,7 +16,7 @@ public class SMSServiceSimulator
     String phoneNumber;
     final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    SMSServiceSimulator(String phoneNumber){
+    public SMSServiceSimulator(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
 
@@ -78,14 +78,14 @@ public class SMSServiceSimulator
      * @return the input formatted into two LocalTime times in an ArrayList
      * @author Irie Railton
      */
-    private List<LocalTime> formatTimes(String input){
+    public List<LocalTime> formatTimes(String input){
         List<LocalTime> openingTimes = new ArrayList<>();
         String[] times = input.split(" - ");
         for (int i = 0; i < 2; i++) {
             if(times[i].length() < 5){
                 times[i] = "0" + times[1];
             }
-            openingTimes.set(i, LocalTime.parse(times[i], timeFormatter));
+            openingTimes.add(LocalTime.parse(times[i], timeFormatter));
         }
         return openingTimes;
     }
@@ -96,7 +96,7 @@ public class SMSServiceSimulator
      * @return A String that shows a list of all opening times on each day.
      * @author Irie Railton
      */
-    private String timesToString(List<LocalTime> times){
+    public String timesToString(List<LocalTime> times){
         StringBuilder openingTimes = new StringBuilder();
         String[] days = {"Monday: ", "Tuesday: ", "Wednesday: ", "Thursday: ", "Friday: ", "Saturday: ", "Sunday: "};
         for (int i = 0; i < 14; i+=2) {
