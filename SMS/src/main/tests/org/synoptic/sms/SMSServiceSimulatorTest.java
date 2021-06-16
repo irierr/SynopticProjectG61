@@ -8,8 +8,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test Harness for SMSServiceSimulator class
+ *
+ * @see SMSServiceSimulator
+ * @author Harry Whitelam
+ */
 class SMSServiceSimulatorTest {
 
+    /**
+     * Should create a list of localTimes with the provided time stored in it
+     *
+     * @author Harry Whitelam
+     */
     @Test
     void formatTimes() {
         SMSServiceSimulator testSMSServiceSimulator = new SMSServiceSimulator("07904823541");
@@ -24,6 +35,11 @@ class SMSServiceSimulatorTest {
                 ()-> assertEquals(testTimeList.get(1), funcTimes.get(1)));
     }
 
+    /**
+     * Should return a string holding all days of the week and their opening hours
+     *
+     * @author Harry Whitelam
+     */
     @Test
     void timesToString() {
         SMSServiceSimulator testSMSServiceSimulator = new SMSServiceSimulator("777");
@@ -31,7 +47,7 @@ class SMSServiceSimulatorTest {
         String testString = """
                 Monday: 09:00 - 16:30
                 Tuesday: 03:00 - 04:00
-                Wednesday: 05:30 - 06:30
+                Wednesday: 09:00 - 16:30
                 Thursday: 07:01 - 08:45
                 Friday: 09:00 - 10:30
                 Saturday: 10:00 - 16:00
