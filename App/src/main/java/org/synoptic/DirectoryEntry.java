@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.time.LocalTime;
 
 /**
- * Point Of Interest (DirectoryEntry) class for storing various locations
+ * DirectoryEntry class for storing various locations
  *
  * @author Harry Whitelam, Darcey Gardiner
  */
