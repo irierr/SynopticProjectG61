@@ -7,10 +7,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Class to control the database connection.
+ */
 public class Database {
 
     private static Connection databaseConnection;
 
+    /**
+     * Static body to initialise the database
+     */
     static {
         Database.connectDatabase();
     }
@@ -33,6 +39,12 @@ public class Database {
         }
     }
 
+    /**
+     * Gets a list of all of the {@link DirectoryEntry Directory Entries}.
+     *
+     * @return A list of entries
+     * @throws SQLException When there is an exception, so it won't return an empty list.
+     */
     public static List<DirectoryEntry> getAllDirectoryEntrys() throws SQLException
     {
         PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT * FROM DirectoryEntry;");
@@ -57,6 +69,12 @@ public class Database {
         return DirectoryEntrys;
     }
 
+    /**
+     * Gets all activities
+     *
+     * @return A list of activities
+     * @throws SQLException When there is an exception so an empty list isn't returned.
+     */
     public static List<Activity> getAllActivities() throws SQLException{
 
         PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT * FROM Activities;");
@@ -171,7 +189,7 @@ public class Database {
             return false;
         }
     }
-    
+
     /*
         CREATE TABLE DirectoryEntry (
         phone VARCHAR(20) NOT NULL PRIMARY KEY,
