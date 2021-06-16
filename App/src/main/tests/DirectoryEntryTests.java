@@ -17,6 +17,7 @@ public class DirectoryEntryTests {
      * @see org.synoptic.DirectoryEntry
      */
     public static void main() {
+        System.out.println("---- TEST STARTED: DirectoryEntry class:");
         if (gettersAndSettersTest() == 1)
             System.out.println("TEST FAILED - Getters and Setters test!");
         else
@@ -25,6 +26,8 @@ public class DirectoryEntryTests {
             System.out.println("TEST FAILED - Print Opening Hours test!");
         else
             System.out.println("TEST PASSED - Print Opening Hours test!");
+
+        System.out.println("--- TEST COMPLETE\n");
     }
 
     /**
