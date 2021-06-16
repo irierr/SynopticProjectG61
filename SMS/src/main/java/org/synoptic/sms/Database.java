@@ -31,11 +31,16 @@ public class Database {
         }
     }
 
+    /**
+     * Gets all opening times for a given phone number
+     * @param phoneNum user's phone number
+     * @return List of opening times for each day as LocalTime times
+     * @author Irie Railton
+     */
     public static List<LocalTime> getOpeningTimes(String phoneNum){
         try
         {
-
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT open, close FROM OpeningTimes WHERE id =" + phoneNum + ";");  //TODO add sql here
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT open, close FROM OpeningTimes WHERE id = " + phoneNum + ";");
             ResultSet resultSet = statement.executeQuery();
             List<LocalTime> openingTimes = new ArrayList<>();
 
@@ -53,13 +58,18 @@ public class Database {
         }
     }
 
+    /**
+     * Updates opening times for a specific day given a users phone number.
+     * @param phoneNum user's phone number
+     * @param day day to update times
+     * @param times new opening times as list of LocalTime times
+     * @return true if update is successful or false if not
+     * @author Irie Railton
+     */
     public static boolean updateOpeningTimes(String phoneNum, int day, List<LocalTime> times){
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("");  //TODO add sql here
-            statement.setString(1, String.valueOf(times.get(0)));
-            statement.setString(2, String.valueOf(times.get(1)));
-
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("UPDATE OpeningTimes SET open = " + times.get(0).toString() + ", close = " + times.get(1).toString() + " WHERE id =" + phoneNum + " AND day =" + day + ";");
             statement.executeUpdate();
 
             return true;
@@ -71,12 +81,17 @@ public class Database {
         }
     }
 
+    /**
+     * Updates announcement for a business/ organisation.
+     * @param phoneNum user's phone number
+     * @param announcement new announcement as a String
+     * @return true if update is successful or false if not
+     * @author Irie Railton
+     */
     public static boolean updateAnnouncement(String phoneNum, String announcement){
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("");  //TODO add sql here
-            statement.setString(1, String.valueOf(announcement));
-
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("UPDATE DirectoryEntry SET announcement = " + announcement + " WHERE phone = " + phoneNum + ";");
             statement.executeUpdate();
 
             return true;
