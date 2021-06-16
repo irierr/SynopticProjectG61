@@ -35,12 +35,12 @@ public class Database {
     {
         try
         {
-            PreparedStatement statement = getDatabaseConnection().prepareStatement("INSERT INTO poi (name, address, phone, description, type) VALUES (?, ?, ?, ?, ?);");
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("INSERT INTO DirectoryEntry (name, address, phone, description, type) VALUES (?, ?, ?, ?, ?);");
             statement.setString(1, name);
             statement.setString(2, address);
             statement.setString(3, phoneNumber);
             statement.setString(4, description);
-            statement.setString(5, POI.Type.SHOP.toString());
+            statement.setString(5, DirectoryEntry.Type.SHOP.toString());
 
             statement.executeUpdate();
 
@@ -53,33 +53,24 @@ public class Database {
         }
     }
 
-    public static List<POI> getAllPOIs() throws SQLException
+    public static List<DirectoryEntry> getAllDirectoryEntrys() throws SQLException
     {
-        PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT * FROM poi;");
+        PreparedStatement statement = getDatabaseConnection().prepareStatement("SELECT * FROM DirectoryEntry;");
         ResultSet resultSet = statement.executeQuery();
 
-        List<POI> pois = new ArrayList<>();
+        List<DirectoryEntry> DirectoryEntrys = new ArrayList<>();
 
         while (resultSet.next())
         {
-            POI.Type type = POI.Type.valueOf(resultSet.getString("type"));
-
-            if (type == POI.Type.WALKING_TRAIL)
-            {
-                pois.add(new POI(resultSet.getString("phone"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("description"), resultSet.getString("endAddress")));
-            }
-            else
-            {
-                pois.add(new POI(type, resultSet.getString("phone"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("description"), new HashMap<Integer, LocalTime[]>()));
-            }
+            DirectoryEntrys.add(new DirectoryEntry(DirectoryEntry.Type.valueOf(resultSet.getString("type")), resultSet.getString("phone"), resultSet.getString("name"), resultSet.getString("address"), resultSet.getString("description"), new HashMap<Integer, LocalTime[]>(), resultSet.getString("announcement")));
         }
 
-        return pois;
+        return DirectoryEntrys;
     }
 
 
     /*
-        CREATE TABLE poi (
+        CREATE TABLE DirectoryEntry (
                      name VARCHAR(200),
                      address VARCHAR(200),
                      phone VARCHAR(20) NOT NULL PRIMARY KEY ,
