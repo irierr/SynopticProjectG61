@@ -14,7 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent homeRoot = FXMLLoader.load(getClass().getResource("/view.fxml"));
+        Parent homeRoot = FXMLLoader.load(getClass().getResource("/views/view.fxml"));
         Scene homeScene = new Scene(homeRoot, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         stage.setScene(homeScene);
         homeScene.getStylesheets().add("stylesheet.css");

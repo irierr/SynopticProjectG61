@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.Controller">
    <stylesheets>
-      <URL value="@stylesheet.css" />
+      <URL value="@../stylesheet.css" />
    </stylesheets>
    <Tab text="Info">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
@@ -30,7 +30,7 @@
                </VBox.margin>
             </Text>
             <ImageView fitHeight="188.0" fitWidth="372.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@localAreaMap.jpg" />
+               <Image url="@../images/localAreaMap.jpg" />
             </ImageView>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The region is home to several key industries, includingoil exploration and extraction, artisanal fishing, surftourism, ecotourism, and transportation. With yearround swells and miles of coastline, Lobitos attractssurfers and tourists from around the world. Piedritasis located in a large equatorial dry forest, which offersmany natural assets for ecotourism and forms partof a valuable ecosystem for wildlife and biodiversity.The recent growth of the tourism industry has causedsome tensions and resentment among the localpopulation in both Lobitos and Piedritas because themoney generated from tourism largely benefits theforeign business owners and not the lower-incomeneighbourhoods. " textAlignment="CENTER" wrappingWidth="372.1473083496094">
                <font>
