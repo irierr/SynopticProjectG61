@@ -1,8 +1,5 @@
 package org.synoptic;
 
-import java.time.LocalTime;
-import java.util.HashMap;
-
 /**
  * Activity class for storing various activities and walking trails
  *
@@ -41,10 +38,11 @@ public class Activity {
      * An activity can either be a walking trail or an attraction. The only dissimilarity between these two is either a phone number or an end address
      * The constructor uses an if statement to check the enum type to correctly select the attributes to define
      *
-     * @param phoneNumberEndAddressVar parameter to specify phone number or end address, depending on the type of the activity
+     * @param typeVar parameter to specify type
      * @param nameVar parameter to specify name
      * @param addressVar parameter to specify address
      * @param descriptionVar parameter to specify description
+     * @param phoneNumberEndAddressVar parameter to specify phone number or end address, depending on the type of the activity
      * @author Harry Whitelam
      */
     public Activity(Activity.Type typeVar, String nameVar, String addressVar, String descriptionVar, String phoneNumberEndAddressVar) {
