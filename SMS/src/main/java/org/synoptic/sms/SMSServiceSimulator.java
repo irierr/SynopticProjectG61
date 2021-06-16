@@ -1,10 +1,11 @@
 package org.synoptic.sms;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+        import java.time.LocalTime;
+        import java.time.format.DateTimeFormatter;
+        import java.util.ArrayList;
+        import java.util.Arrays;
+        import java.util.List;
+        import java.util.Scanner;
 
 /**
  * Simulates an SMS Service for owners of businesses/ organisations to update opening times and announcements for display
