@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="400.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.Controller">
     <stylesheets>
-        <URL value="@stylesheet.css" />
+        <URL value="@../stylesheet.css" />
     </stylesheets>
     <Tab text="Info">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
@@ -38,7 +38,7 @@
                     </VBox.margin>
                 </Text>
                 <ImageView fitHeight="114.0" fitWidth="373.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@Temps.jpg" />
+                    <Image url="@../images/temps.jpg" />
                 </ImageView>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The average rainfall various a lot throughout the year, with the largest averages appearing in the summer months. But due to the arid conditions, rainfall is lower than 100mm (4 inches) per year. Apart from in the case of severe El Niño events, as these can provoke major flooding which raises the annual precipiation to as high as 4,000mm (157.5 inches)" textAlignment="CENTER" wrappingWidth="368.27490234375">
                     <font>
@@ -49,7 +49,7 @@
                     </VBox.margin>
                 </Text>
                 <ImageView fitHeight="70.0" fitWidth="374.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@Rain.jpg" />
+                    <Image url="@../images/rain.jpg" />
                 </ImageView>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The last major El Niño event that occurred in the Piura region was in 2017. The previous major one happened between 1997-1998 and it caused the optimal conditions for surfing. This resulted in an influx of surfers and tourists from 1998 to the late 2000s. Normally, these events only occur every 15-20 years, but recently, it has been occuring more frequently due to climate change. " textAlignment="CENTER" wrappingWidth="370.2437744140625">
                     <font>
