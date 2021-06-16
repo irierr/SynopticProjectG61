@@ -1,18 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.synoptic.controller" prefHeight="400.0" prefWidth="600.0">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="200.0">
-        <children>
-            <ListView fx:id="ActivityList" layoutX="12.0" layoutY="14.0" prefHeight="200.0" prefWidth="375.0" />
-            <Label fx:id="ActivityDescription" layoutX="14.0" layoutY="229.0" text="Label" />
-            <Button fx:id="ActivityMapButton" layoutX="321.0" layoutY="669.0" mnemonicParsing="false" text="Map" />
-            <Button fx:id="ActivityDirectoryButton" layoutX="321.0" layoutY="628.0" mnemonicParsing="false" text="Directory" />
-        </children>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.synoptic.Controller" prefHeight="400.0" prefWidth="600.0">
+    <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="726.0" prefWidth="400.0">
+            <ListView fx:id="ActivityList" layoutX="13.0" layoutY="163.0" prefHeight="200.0" prefWidth="375.0"/>
+            <VBox layoutX="10.0" layoutY="374.0" prefHeight="343.0" prefWidth="389.0">
+                <HBox prefHeight="26.0" prefWidth="389.0" spacing="5.0">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="7.0"/>
+                    </VBox.margin>
+                    <Label text="Name:"/>
+                    <TextField fx:id="ActivityQName" editable="false" prefHeight="31.0" prefWidth="319.0">
+                        <font>
+                            <Font name="Century Gothic" size="16.0"/>
+                        </font>
+                    </TextField>
+                </HBox>
+                <HBox prefHeight="18.0" prefWidth="389.0" spacing="5.0">
+                    <padding>
+                        <Insets top="7.0"/>
+                    </padding>
+                    <Label text="Address:"/>
+                    <TextField fx:id="ActivityQAddress" prefHeight="31.0" prefWidth="305.0"/>
+                </HBox>
+                <HBox prefHeight="43.0" prefWidth="389.0" spacing="5.0">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <Label fx:id="attractionType" prefHeight="20.0" prefWidth="105.0" text="End Address:"/>
+                    <TextField fx:id="phoneOrAddress" prefHeight="31.0" prefWidth="265.0"/>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <VBox prefHeight="133.0" prefWidth="194.0">
+                        <Label text="Description"/>
+                        <TextArea fx:id="ActivityQDesc" editable="false" prefHeight="108.0"
+                                  prefWidth="196.0" wrapText="true">
+                            <font>
+                                <Font name="Century Gothic" size="16.0"/>
+                            </font>
+                        </TextArea>
+                    </VBox>
+                    <ImageView fx:id="ActivityPlaceholder" fitHeight="133.0" fitWidth="128.0"
+                               pickOnBounds="true" preserveRatio="true">
+                        <HBox.margin>
+                            <Insets left="30.0"/>
+                        </HBox.margin>
+                        <Image url="@activityPlaceholder.jpg"/>
+                    </ImageView>
+                </HBox>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="If you have any suggestions on how to improve this app, please contact Ecoswell during your stay and they will take your suggestions into account. Thank you for choosing to stay in Lobitos/Piedritas, we hope you enjoy our wonderful towns!"
+                      textAlignment="CENTER" wrappingWidth="381.4735412597656">
+                    <font>
+                        <Font name="Century Gothic" size="12.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Text>
+            </VBox>
+            <Text layoutX="9.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="Things to do in Lobitos &amp; Piedritas" underline="true">
+                <font>
+                    <Font name="Century Gothic" size="24.0"/>
+                </font>
+            </Text>
+            <Text layoutX="12.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="Here you will find all of the wonderful things to do in Lobitos and Piedritas. From Surf schools to walking trails, there is plenty to keep you entertained during your stay! Make the most of your time in town and support local businesses along the way. We hope you enjoy your stay!"
+                  textAlignment="CENTER" wrappingWidth="374.51611328125">
+                <font>
+                    <Font name="Century Gothic" size="13.0"/>
+                </font>
+            </Text>
+        </AnchorPane>
     </AnchorPane>
 </AnchorPane>

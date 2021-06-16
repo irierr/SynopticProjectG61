@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 
 <ScrollPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.controller" fx:id="scroller">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.synoptic.Controller" fx:id="scroller">
    <ImageView fx:id="mapImage" fitHeight="800.0" fitWidth="1572.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@lobitos_map.png"/>
    </ImageView>
