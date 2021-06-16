@@ -171,8 +171,7 @@ public class Database {
             return false;
         }
     }
-
-
+    
     /*
         CREATE TABLE DirectoryEntry (
         phone VARCHAR(20) NOT NULL PRIMARY KEY,

@@ -167,7 +167,7 @@
                                  </TextArea>
                               </children>
                            </VBox>
-                           <ImageView fx:id="POIImage11" fitHeight="133.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fx:id="ActivityPlaceholder" fitHeight="133.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                               <image>
                                  <Image url="@activityPlaceholder.jpg" />
                               </image>
