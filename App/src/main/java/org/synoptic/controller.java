@@ -67,6 +67,43 @@ public class controller implements Initializable {
                 }
             }
         });
+
+        ActivityList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
+            @Override
+            public void changed(ObservableValue<? extends Activity> observable, Activity oldValue, Activity newValue) {
+                int selection = ActivityList.getSelectionModel().getSelectedIndex();
+                if (selection != -1)
+                {
+                    System.out.println("Updated selected Activity entry to: " + selection);
+                    Activity activity = (Activity) ActivityList.getItems().get(selection);
+
+                    if (activity != null)
+                    {
+                        ActivityQName.setText(activity.getName());
+                        ActivityQAddress.setText(activity.getAddress());
+                        ActivityQDesc.setText(activity.getDescription());
+
+                        switch (activity.getType()){
+                            case ATTRACTION -> {
+                                attractionType.setText("Phone:");
+                                phoneOrAddress.setText(activity.getPhoneNumber());
+                            }
+                            case WALKING_TRAIL -> {
+                                attractionType.setText("End Address:");
+                                phoneOrAddress.setText(activity.getEndAddress());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ActivityQName.setText(null);
+                        ActivityQAddress.setText(null);
+                        ActivityQDesc.setText(null);
+                    }
+
+                }
+            }
+        });
     }
 
     public Scene loadScene(String path) throws IOException {
@@ -149,56 +186,69 @@ public class controller implements Initializable {
     @FXML private Label POIDescription;
     @FXML private TableView POIOpeningHours = new TableView();
     @FXML private ListView<DirectoryEntry> DirectoryList = new ListView();
-    @FXML private ImageView POIImage = new ImageView();
+    @FXML private ImageView DirectoryEntryImage = new ImageView();
 
 
     public void loadDirectory(Event event) {
         DirectoryList.getItems().clear();
-
         //TODO add reference to stackoverflow
-
         DirectoryList.setCellFactory(param -> new ListCell<DirectoryEntry>() {
             @Override
             protected void updateItem(DirectoryEntry item, boolean empty) {
                 super.updateItem(item, empty);
-
-                if (empty || item == null || item.getName() == null)
-                {
+                if (empty || item == null || item.getName() == null) {
                     setText(null);
                 }
-                else
-                {
+                else {
                     setText(item.getName());
                 }
-
             }
         });
-
-        //try
-        //{
-
-            List<DirectoryEntry> list = new ArrayList<>();
-            list.add(new DirectoryEntry(DirectoryEntry.Type.SHOP, "1", "Bank", "1 Bank ROad", "Money", new HashMap<>(), ""));
-            list.add(new DirectoryEntry(DirectoryEntry.Type.SHOP, "2", "Bank 2", "2 Bank ROad", "Money", new HashMap<>(), ""));
-            for (DirectoryEntry entry : /*Database.getAllDirectoryEntrys()*/ list)
+        try{
+            for (DirectoryEntry entry : Database.getAllDirectoryEntrys())
             {
                 DirectoryList.getItems().add(entry);
             }
-        //}
-        /*catch (SQLException e)
+        } catch (SQLException e)
         {
             //TODO Handle SQL Exception
-        }*/
+        }
     }
 
 
     /* Activity Page ----------------------------------------------------------*/
 
     @FXML private ListView ActivityList = new ListView();
-    @FXML private Label ActivityDescription = new Label();
+    @FXML private TextField ActivityQName, ActivityQAddress, phoneOrAddress;
+    @FXML private TextArea ActivityQDesc;
+    @FXML private Label attractionType = new Label();
     @FXML private Button ActivityMapButton = new Button();
     @FXML private Button ActivityDirectoryButton = new Button();
 
+    public void loadActivities(Event event) {
+        ActivityList.getItems().clear();
+        //TODO add reference to stackoverflow
+        ActivityList.setCellFactory(param -> new ListCell<Activity>() {
+            @Override
+            protected void updateItem(Activity item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.getName() == null) {
+                    setText(null);
+                }
+                else {
+                    setText(item.getName());
+                }
+            }
+        });
+        try{
+            for (Activity activity : Database.getAllActivities()) {
+                ActivityList.getItems().add(activity);
+            }
+        } catch (SQLException e)
+        {
+            //TODO Handle SQL Exception
+        }
+    }
 
     public void ActivityMapButton() throws IOException
     {
