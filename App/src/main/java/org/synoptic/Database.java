@@ -75,6 +75,7 @@ public class Database {
         name VARCHAR(200) NOT NULL,
         address VARCHAR(200) NOT NULL,
         description VARCHAR(200) NOT NULL,
+        announcement VARCHAR(200)
         );
 
         CREATE TABLE OpeningTimes
