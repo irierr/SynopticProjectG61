@@ -1,5 +1,6 @@
 Tests
 
+All image icons are taken from google, none are claimed as our own.
 
 
 Reference:

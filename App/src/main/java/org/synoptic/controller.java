@@ -268,7 +268,6 @@ public class controller implements Initializable {
         }
     }
 
-
     /* Map Page ------------------------------------------------------------------------------------------------------*/
 
     @FXML public ImageView mapImage = new ImageView();
