@@ -71,12 +71,31 @@ public class Database {
 
     /*
         CREATE TABLE DirectoryEntry (
-                     name VARCHAR(200),
-                     address VARCHAR(200),
-                     phone VARCHAR(20) NOT NULL PRIMARY KEY ,
-                     description VARCHAR(200),
-                     type VARCHAR(20),
-                     endAddress VARCHAR(200)
-);
-     */
+        phone VARCHAR(20) NOT NULL PRIMARY KEY,
+        name VARCHAR(200) NOT NULL,
+        address VARCHAR(200) NOT NULL,
+        description VARCHAR(200) NOT NULL,
+        type VARCHAR(20) NOT NULL,
+        );
+
+        CREATE TABLE OpeningTimes
+        (
+            id VARCHAR(20) NOT NULL,
+            open VARCHAR(5),
+            close VARCHAR(5),
+            day INT NOT NULL,
+            CONSTRAINT FOREIGN KEY(id) REFERENCES DirectoryEntry(phone) ON DELETE CASCADE ON UPDATE CASCADE
+        );
+
+        create table Activities
+        (
+            type VARCHAR(20) NOT NULL,
+            name VARCHAR(200) NOT NULL,
+            address VARCHAR(200) NOT NULL,
+            endAddress VARCHAR(200),
+            description VARCHAR(200) NOT NULL,
+            phone VARCHAR(20),
+            CONSTRAINT FOREIGN KEY(id) REFERENCES DirectoryEntry(phone) ON DELETE CASCADE ON UPDATE CASCADE
+        );
+    */
 }
