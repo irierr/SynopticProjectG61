@@ -1,14 +1,11 @@
 package org.synoptic;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.event.Event;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,18 +14,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.*;
 
-public class controller implements Initializable {
+public class Controller implements Initializable {
 
     public static final int DEFAULT_WIDTH = 400;
     public static final int DEFAULT_HEIGHT = 800;
@@ -39,80 +34,74 @@ public class controller implements Initializable {
 
         //listens for an input in the shops list sets selection to the number in the list that's been selected
         //initialising ShopList List
-        DirectoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<DirectoryEntry>() {
-            @Override
-            public void changed(ObservableValue<? extends DirectoryEntry> observable, DirectoryEntry oldValue, DirectoryEntry newValue) {
-                int selection = DirectoryList.getSelectionModel().getSelectedIndex();
-                if (selection != -1)
+        DirectoryList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            int selection = DirectoryList.getSelectionModel().getSelectedIndex();
+            if (selection != -1)
+            {
+                System.out.println("Updated selected Directory entry to: " + selection);
+                DirectoryEntry entry = DirectoryList.getItems().get(selection);
+
+                if (entry != null)
                 {
-                    System.out.println("Updated selected Directory entry to: " + selection);
-                    DirectoryEntry entry = DirectoryList.getItems().get(selection);
+                    DEQueryName.setText(entry.getName());
+                    DEQueryDesc.setText(entry.getDescription());
+                    DEQueryPhone.setText(entry.getPhoneNumber());
+                    DEQueryAddress.setText(entry.getAddress());
+                    List<Map.Entry<String, LocalTime[]>> hours = new ArrayList<>();
 
-                    if (entry != null)
+                    for (int i : entry.getOpeningHours().keySet())
                     {
-                        DEQueryName.setText(entry.getName());
-                        DEQueryDesc.setText(entry.getDescription());
-                        DEQueryPhone.setText(entry.getPhoneNumber());
-                        DEQueryAddress.setText(entry.getAddress());
-                        List<Map.Entry<String, LocalTime[]>> hours = new ArrayList<>();
-
-                        for (int i : entry.getOpeningHours().keySet())
-                        {
-                            hours.add(new AbstractMap.SimpleEntry(entry.dayNumberToString(i), entry.getOpeningHours().get(i)));
-                        }
-
-                        DEOpeningHours.setItems(FXCollections.observableArrayList(hours));
-                    }
-                    else
-                    {
-                        DEQueryName.setText(null);
-                        DEQueryDesc.setText(null);
-                        DEQueryPhone.setText(null);
-                        DEQueryAddress.setText(null);
-                        DEOpeningHours.getItems().clear();
+                        hours.add(new AbstractMap.SimpleEntry(entry.dayNumberToString(i), entry.getOpeningHours().get(i)));
                     }
 
+                    DEOpeningHours.setItems(FXCollections.observableArrayList(hours));
                 }
+                else
+                {
+                    DEQueryName.setText(null);
+                    DEQueryDesc.setText(null);
+                    DEQueryPhone.setText(null);
+                    DEQueryAddress.setText(null);
+                    DEOpeningHours.getItems().clear();
+                }
+
             }
         });
 
-        ActivityList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
-            @Override
-            public void changed(ObservableValue<? extends Activity> observable, Activity oldValue, Activity newValue) {
-                int selection = ActivityList.getSelectionModel().getSelectedIndex();
-                if (selection != -1)
+        ActivityList.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Activity>) (observable, oldValue, newValue) -> {
+            int selection = ActivityList.getSelectionModel().getSelectedIndex();
+            if (selection != -1)
+            {
+                System.out.println("Updated selected Activity entry to: " + selection);
+                Activity activity = (Activity) ActivityList.getItems().get(selection);
+
+                if (activity != null)
                 {
-                    System.out.println("Updated selected Activity entry to: " + selection);
-                    Activity activity = (Activity) ActivityList.getItems().get(selection);
+                    ActivityQName.setText(activity.getName());
+                    ActivityQAddress.setText(activity.getAddress());
+                    ActivityQDesc.setText(activity.getDescription());
 
-                    if (activity != null)
-                    {
-                        ActivityQName.setText(activity.getName());
-                        ActivityQAddress.setText(activity.getAddress());
-                        ActivityQDesc.setText(activity.getDescription());
-
-                        switch (activity.getType()){
-                            case ATTRACTION -> {
-                                attractionType.setText("Phone:");
-                                phoneOrAddress.setText(activity.getPhoneNumber());
-                                ActivityPlaceholder.setImage(waterImage);
-                            }
-                            case WALKING_TRAIL -> {
-                                attractionType.setText("End Address:");
-                                phoneOrAddress.setText(activity.getEndAddress());
-                                ActivityPlaceholder.setImage(activityImage);
-                            }
-                            default -> throw new IllegalStateException("Unexpected value: " + activity.getType());
+                    switch (activity.getType()){
+                        case ATTRACTION -> {
+                            attractionType.setText("Phone:");
+                            phoneOrAddress.setText(activity.getPhoneNumber());
+                            ActivityPlaceholder.setImage(waterImage);
                         }
+                        case WALKING_TRAIL -> {
+                            attractionType.setText("End Address:");
+                            phoneOrAddress.setText(activity.getEndAddress());
+                            ActivityPlaceholder.setImage(activityImage);
+                        }
+                        default -> throw new IllegalStateException("Unexpected value: " + activity.getType());
                     }
-                    else
-                    {
-                        ActivityQName.setText(null);
-                        ActivityQAddress.setText(null);
-                        ActivityQDesc.setText(null);
-                    }
-
                 }
+                else
+                {
+                    ActivityQName.setText(null);
+                    ActivityQAddress.setText(null);
+                    ActivityQDesc.setText(null);
+                }
+
             }
         });
     }
@@ -134,42 +123,42 @@ public class controller implements Initializable {
     public void climateButton() throws IOException{
         Stage closeStage = (Stage) climateButton.getScene().getWindow();
         closeStage.close();
-        displayScene("climate.fxml");
+        displayScene("views/climate.fxml");
     }
 
     @FXML public Button demographicButton;
     public void demographicButton() throws IOException{
         Stage closeStage = (Stage) demographicButton.getScene().getWindow();
         closeStage.close();
-        displayScene("demographics.fxml");
+        displayScene("views/demographics.fxml");
     }
 
     @FXML public Button localAreaButton;
     public void localAreaButton() throws IOException{
         Stage closeStage = (Stage) localAreaButton.getScene().getWindow();
         closeStage.close();
-        displayScene("localArea.fxml");
+        displayScene("views/localArea.fxml");
     }
 
     @FXML public Button industriesAndEmploymentButton;
     public void industriesAndEmploymentButton() throws IOException{
         Stage closeStage = (Stage) industriesAndEmploymentButton.getScene().getWindow();
         closeStage.close();
-        displayScene("industriesAndEmployment.fxml");
+        displayScene("views/industriesAndEmployment.fxml");
     }
 
     @FXML public Button historyButton;
     public void historyButton() throws IOException {
         Stage closeStage = (Stage) historyButton.getScene().getWindow();
         closeStage.close();
-        displayScene("history.fxml");
+        displayScene("views/history.fxml");
     }
 
     @FXML public Button ecoProblemsButton;
     public void ecoProblemsButton() throws IOException {
         Stage closeStage = (Stage) ecoProblemsButton.getScene().getWindow();
         closeStage.close();
-        displayScene("ecoProblems.fxml");
+        displayScene("views/ecoProblems.fxml");
     }
 
     @FXML public Button backInfo;
@@ -182,7 +171,7 @@ public class controller implements Initializable {
     public void backInfoButton() throws IOException{
         Stage closeStage = (Stage) backInfo.getScene().getWindow();
         closeStage.close();
-        displayScene("view.fxml");
+        displayScene("views/view.fxml");
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(3);
 
@@ -193,22 +182,21 @@ public class controller implements Initializable {
     @FXML private Label DEName;
     @FXML private TextField DEQueryName, DEQueryPhone, DEQueryAddress;
     @FXML private TextArea DEQueryDesc;
-    @FXML private TableView<Map.Entry<String, LocalTime[]>> DEOpeningHours = new TableView();
-    @FXML private ListView<DirectoryEntry> DirectoryList = new ListView();
+    @FXML private TableView<Map.Entry<String, LocalTime[]>> DEOpeningHours = new TableView<>();
+    @FXML private ListView<DirectoryEntry> DirectoryList = new ListView<>();
     @FXML private ImageView DirectoryEntryImage = new ImageView();
 
 
     public void loadDirectory(Event event) {
         DirectoryList.getItems().clear();
         //TODO add reference to stackoverflow
-        DirectoryList.setCellFactory(param -> new ListCell<DirectoryEntry>() {
+        DirectoryList.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(DirectoryEntry item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null || item.getName() == null) {
                     setText(null);
-                }
-                else {
+                } else {
                     setText(item.getName());
                 }
             }
@@ -237,11 +225,9 @@ public class controller implements Initializable {
     @FXML private TextField ActivityQName, ActivityQAddress, phoneOrAddress;
     @FXML private TextArea ActivityQDesc;
     @FXML private Label attractionType = new Label();
-    @FXML private Button ActivityMapButton = new Button();
-    @FXML private Button ActivityDirectoryButton = new Button();
     @FXML private ImageView ActivityPlaceholder = new ImageView();
-    @FXML private Image waterImage = new Image("waterPlaceholder.jpg");
-    @FXML private Image activityImage = new Image("activityPlaceholder.jpg");
+    @FXML private Image waterImage = new Image("images/waterPlaceholder.jpg");
+    @FXML private Image activityImage = new Image("images/activityPlaceholder.jpg");
 
     public void loadActivities(Event event) {
         ActivityList.getItems().clear();
