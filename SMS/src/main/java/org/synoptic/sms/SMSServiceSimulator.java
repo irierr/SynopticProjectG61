@@ -16,7 +16,7 @@ public class SMSServiceSimulator
     String phoneNumber;
     final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    SMSServiceSimulator(String phoneNumber){
+    public SMSServiceSimulator(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
 
@@ -75,14 +75,15 @@ public class SMSServiceSimulator
      * @return the input formatted into two LocalTime times in an ArrayList
      * @author Irie Railton
      */
-    private List<LocalTime> formatTimes(String input){
+    public List<LocalTime> formatTimes(String input){
         List<LocalTime> openingTimes = new ArrayList<>();
         String[] times = input.split(" - ");
         for (int i = 0; i < 2; i++) {
             if(times[i].length() < 5){
                 times[i] = "0" + times[1];
             }
-            openingTimes.set(i, LocalTime.parse(times[i], timeFormatter));
+//            openingTimes.set(i, LocalTime.parse(times[i], timeFormatter));
+            openingTimes.add(LocalTime.parse(times[i], timeFormatter));
         }
         return openingTimes;
     }
@@ -93,7 +94,7 @@ public class SMSServiceSimulator
      * @return true if day is a day of the week and false if not
      * @author Irie Railton
      */
-    private boolean validateDay(String day){
+    public boolean validateDay(String day){
         day = day.toLowerCase();
         return day.equals("monday") || day.equals("tuesday") || day.equals("wednesday") || day.equals("thursday") || day.equals("friday") || day.equals("saturday") || day.equals("sunday");
     }
