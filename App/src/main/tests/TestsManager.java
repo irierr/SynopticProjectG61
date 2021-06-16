@@ -10,7 +10,8 @@ public class TestsManager {
      * @author Harry Whitelam
      * @see DirectoryEntryTests
      */
-    public static void main() {
+    public static void main(String[] args) {
         DirectoryEntryTests.main();
+        ActivityTests.main();
     }
 }
