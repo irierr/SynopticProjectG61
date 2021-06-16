@@ -2,6 +2,9 @@ package org.synoptic.sms;
 
 import java.sql.*;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
@@ -28,12 +31,34 @@ public class Database {
         }
     }
 
-    public static boolean updateOpeningTimes(String phoneNum, int day, LocalTime[] times){
+    public static List<LocalTime> getOpeningTimes(String phoneNum){
+        try
+        {
+
+            PreparedStatement statement = getDatabaseConnection().prepareStatement("");  //TODO add sql here
+            ResultSet resultSet = statement.executeQuery();
+            List<LocalTime> openingTimes = new ArrayList<>();
+
+            while(resultSet.next()){
+                openingTimes.add(LocalTime.parse(resultSet.getString("Open"), DateTimeFormatter.ofPattern("HH:mm")));
+                openingTimes.add(LocalTime.parse(resultSet.getString("Close"), DateTimeFormatter.ofPattern("HH:mm")));
+            }
+
+            return openingTimes;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static boolean updateOpeningTimes(String phoneNum, String day, List<LocalTime> times){
         try
         {
             PreparedStatement statement = getDatabaseConnection().prepareStatement("");  //TODO add sql here
-            statement.setString(1, String.valueOf(times[0]));
-            statement.setString(2, String.valueOf(times[1]));
+            statement.setString(1, String.valueOf(times.get(0)));
+            statement.setString(2, String.valueOf(times.get(1)));
 
             statement.executeUpdate();
 
