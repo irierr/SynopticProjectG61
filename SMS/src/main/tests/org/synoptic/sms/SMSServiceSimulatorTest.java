@@ -42,16 +42,16 @@ class SMSServiceSimulatorTest {
      */
     @Test
     void timesToString() {
-        SMSServiceSimulator testSMSServiceSimulator = new SMSServiceSimulator("777");
-        List<LocalTime> currOpenTimes = Database.getOpeningTimes("777");
+        SMSServiceSimulator testSMSServiceSimulator = new SMSServiceSimulator("51946446843");
+        List<LocalTime> currOpenTimes = Database.getOpeningTimes("51946446843");
         String testString = """
-                Monday: 09:00 - 16:30
-                Tuesday: 03:00 - 04:00
-                Wednesday: 09:00 - 16:30
-                Thursday: 07:01 - 08:45
-                Friday: 09:00 - 10:30
-                Saturday: 10:00 - 16:00
-                Sunday: closed
+                Monday: closed
+                Tuesday: closed
+                Wednesday: closed
+                Thursday: closed
+                Friday: 10:00 - 19:00
+                Saturday: 10:00 - 19:00
+                Sunday: 10:00 - 19:00
                 """;
         assertEquals(testString, testSMSServiceSimulator.timesToString(currOpenTimes));
     }
