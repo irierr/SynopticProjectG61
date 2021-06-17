@@ -28,7 +28,7 @@
           <VBox layoutX="6.0" layoutY="113.0" prefHeight="599.0" prefWidth="389.0">
               <VBox prefHeight="112.0" prefWidth="389.0">
                   <Label text="Announcements"/>
-                  <TextArea fx:id="DEAnnouncement" prefHeight="90.0" prefWidth="389.0" editable="false"/>
+                  <TextArea fx:id="DEAnnouncement" prefHeight="90.0" prefWidth="389.0" editable="false" wrapText="true"/>
               </VBox>
               <HBox prefHeight="27.0" prefWidth="389.0" spacing="5.0">
                   <VBox.margin>
